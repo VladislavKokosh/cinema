@@ -1,13 +1,12 @@
 import React, { useState} from 'react'
-import { Link } from "react-router-dom";
 
 import Header from '../Header/index'
+import Footer from '../Footer';
 import { Typography, Button, Modal } from 'antd';
 
 import './index.scss'
 
 const { Title } = Typography;
-
 
 const Body = () => {
 
@@ -38,6 +37,7 @@ const Body = () => {
                         <p>Для того, чтобы заказать билет, вам нужно авторизоваться. Сделать это можно в верхнем меню.</p>
                     </Modal>
             </div>
+            <Footer className='main__footer'></Footer>
         </div>
     )
 }
