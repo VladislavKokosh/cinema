@@ -12,9 +12,10 @@ const Header = (props) => {
             title='Кинотеатр "Звезда"'
             subTitle='Приходи к нам, будем рады!'
             extra={[
-                <Button 
+                <Button
                     key="1"
                     type="primary"
+                    onClick={() => this.props.setAuthorization(true)}
                 >
                     Sign Up
                 </Button>,
