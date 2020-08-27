@@ -15,13 +15,13 @@ const Header = (props) => {
                 <Button
                     key="1"
                     type="primary"
-                    onClick={() => this.props.setAuthorization(true)}
+                    onClick={() => props.setAuthorization(true)}
                 >
                     Sign Up
                 </Button>,
                 <Button
                     key="2"
-                    onClick={() => this.props.setAuthorization(true)}
+                    onClick={() => props.setAuthorization(true)}
                 >
                     Log In
                 </Button>

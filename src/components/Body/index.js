@@ -1,6 +1,9 @@
 import React, { useState} from 'react'
+import { Link } from "react-router-dom";
+
 import Header from '../Header/index'
 import { Typography, Button, Modal } from 'antd';
+
 import './index.scss'
 
 const { Title } = Typography;
