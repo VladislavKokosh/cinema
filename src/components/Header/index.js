@@ -6,6 +6,7 @@ import './index.scss';
 const Header = () => {
 return(
     <PageHeader
+        style={{backgroundColor: 'white'}}
         avatar={{ src: 'https://w7.pngwing.com/pngs/24/982/png-transparent-cinema-film-music-computer-icons-actor.png' }}
         className='header'
         title='Кинотеатр "Звезда"'

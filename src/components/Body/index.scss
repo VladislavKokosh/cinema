@@ -1,19 +1,25 @@
-.body {
+.main {
     background-image: url(https://moskvalux.ru/wp-content/uploads/2019/05/390edeaabf6e22587fb2d27467231079.jpg);
     background-size: 100vw 100vh;
     width: 100vw;
     height: 100vh;
-    .order {
+
+    &__order {
+        box-shadow: 7px 7px 5px rgba(0,0,0,0.6);
+        border-radius: 10px;
         margin-left: 100px;
-        margin-top: 100px;
-        border-style: solid;
-        border-color: gray;
-        width: 470px;
-        height: 150px;
-        background-color: white;;
-        .context {
+        margin-top: 170px;
+        width: 500px;
+        height: 120px;
+        background-color: white;
+
+        &-title {
+            margin-top: 30px;
             margin-left: 20px;
-            margin-top: 20px;
+        }
+
+        &-button {
+            margin-left: 320px;
         }
     }
 }
