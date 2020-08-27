@@ -1,13 +1,12 @@
 import React, { useState} from 'react'
-import { Link } from "react-router-dom";
 
 import Header from '../Header/index'
+import Footer from '../Footer';
 import { Typography, Button, Modal } from 'antd';
 
 import './index.scss'
 
 const { Title } = Typography;
-
 
 const Body = () => {
 
@@ -15,28 +14,35 @@ const Body = () => {
     const [authorization, setAuthorization] = useState(false);
 
     return (
-        <div className='main'>
-            <Header setAuthorization={setAuthorization}></Header>
-            <div className='main__order'>
-                    <Title
-                        className='main__order-title'>
-                        Заказать билет онлайн.
-                    </Title>
-                    <Button
-                        className='main__order-button'
-                        size="large"
-                        onClick={() => authorization ? console.log("okey") : setVisibleModal(true) }
-                        >
-                        Заказать билет.
-                    </Button>
-                    <Modal
-                        title="Ошибка авторизации"
-                        visible={visibleModal}
-                        onOk={() => setVisibleModal(false)}
-                        onCancel={() => setVisibleModal(false)}
-                        >
-                        <p>Для того, чтобы заказать билет, вам нужно авторизоваться. Сделать это можно в верхнем меню.</p>
-                    </Modal>
+        <div>
+            <div>
+                <Header setAuthorization={setAuthorization}></Header>
+            </div>
+                <div className='body'>
+                    <div className='body__order'>
+                            <Title
+                                className='body__order-title'>
+                                Заказать билет онлайн.
+                            </Title>
+                            <Button
+                                className='body__order-button'
+                                size="large"
+                                onClick={() => authorization ? console.log("okey") : setVisibleModal(true) }
+                                >
+                                Заказать билет.
+                            </Button>
+                            <Modal
+                                title="Ошибка авторизации"
+                                visible={visibleModal}
+                                onOk={() => setVisibleModal(false)}
+                                onCancel={() => setVisibleModal(false)}
+                                >
+                                <p>Для того, чтобы заказать билет, вам нужно авторизоваться. Сделать это можно в верхнем меню.</p>
+                            </Modal>
+                    </div>
+                </div>
+            <div>
+                <Footer className='body__footer'></Footer>
             </div>
         </div>
     )
