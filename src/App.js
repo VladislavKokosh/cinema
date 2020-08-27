@@ -1,12 +1,16 @@
 import React from 'react';
 
-import Body from './components/Body/index'
 import 'antd/dist/antd.css';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import Container from './components/Container';
 
 function App() {
 return (
     <div className="App">
-        <Body></Body>
+        <Header></Header>
+        <Container></Container>
+        <Footer></Footer>
     </div>
 )}
 
