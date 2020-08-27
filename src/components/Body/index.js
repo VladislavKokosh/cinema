@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Typography } from 'antd';
+import { Typography, Button } from 'antd';
 import './index.scss'
 
 const { Title } = Typography;
@@ -8,9 +8,14 @@ const { Title } = Typography;
 
 const Body = () => {
     return (
-        <div className='body' style={{filter: 'blur(5px)'}}>
-            <div className='title'>
-                <Title>Заказать билет онлайн.</Title>
+        <div className='body'>
+            <div className='order'>
+                <div сlassName='context'>
+                    <Title className='title'>Заказать билет онлайн.</Title>
+                    <Button size="large">
+                        Заказать билет.
+                    </Button>
+                </div>
             </div>
         </div>
     )
