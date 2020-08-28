@@ -1,7 +1,5 @@
 import React, { useState} from 'react'
 
-import Header from '../Header/index'
-import Footer from '../Footer';
 import { Typography, Button, Modal } from 'antd';
 
 import './index.scss'
