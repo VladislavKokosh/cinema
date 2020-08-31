@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect  } from 'react'
 
 import { Typography, Button, Modal } from 'antd';
 
@@ -9,7 +9,11 @@ const { Title } = Typography;
 const Body = () => {
 
 const [visibleModal, setVisibleModal] = useState(false);
-const [authorization, setAuthorization] = useState(false);
+const [authorization, setAuthorization] = useState(true);
+
+useEffect(() => {
+    authorization ? console.log('Авторизован') : console.log('Неавторизован')
+});
 
 return (
     <div className='body'>
@@ -22,7 +26,9 @@ return (
             <Button
                 className='body__order-button'
                 size="large"
-                onClick={() => authorization ? console.log("okey") : setVisibleModal(true) }
+                onClick={() => {
+                    setAuthorization(localStorage.getItem('autorization'))
+                }}
             >
                 Заказать билет.
             </Button>
