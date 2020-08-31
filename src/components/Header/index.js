@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import { PageHeader, Button, Modal, Form, Input, Checkbox  } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
@@ -9,6 +9,7 @@ const Header = (props) => {
     const [clickLogin, setClickLogin] = useState(false);
     const [login, setLogin] = useState('');
     const [pass, setPass] = useState('');
+    const [autorization, setAutorization] = useState(localStorage.getItem('autorization'));
     const [users, setUsers] = useState([
         {
             login: '123',
@@ -20,11 +21,16 @@ const Header = (props) => {
         }
     ]);
 
-    const сheckUsers = () => {
-        const autorization = users.find(user => {
-            user.login === login && user.pass === pass});
-
+    useEffect(() =>
         autorization
+            ? true
+            : false)
+
+    const сheckUsers = () => {
+        const autorizationUser = users.find(user =>
+            user.login === login && user.pass === pass);
+
+        autorizationUser
             ? localStorage.setItem('autorization', true)
             : localStorage.setItem('autorization', false)
         return
@@ -37,15 +43,9 @@ const Header = (props) => {
             className='header'
             title='Кинотеатр "Звезда"'
             subTitle='Приходи к нам, будем рады!'
-            extra={[
-                <Button
-                    key="1"
-                    type="primary"
-                    onClick={() => props.setAuthorization(true)}
-                >
-                    Sign Up
-                </Button>,
-                <>
+            extra={
+                autorization
+                ? <>
                 <Button
                     key="2"
                     onClick={() => setClickLogin(true)}
@@ -95,7 +95,7 @@ const Header = (props) => {
                         </Form.Item>
 
                         <Form.Item>
-                            <Button type="primary" htmlType="submit" className="login-form-button">
+                            <Button onClick={() => сheckUsers()} type="primary" htmlType="submit" className="login-form-button">
                                 Log in
                             </Button>
                                 Or <a href="">register now!</a>
@@ -103,7 +103,13 @@ const Header = (props) => {
                     </Form>
                 </Modal>
                 </>
-            ]}
+                : <Button
+                key="2"
+                onClick={() => setClickLogin(true)}
+                >
+                    Log Out
+                </Button>
+            }
         />
     )
 }
