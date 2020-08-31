@@ -6,7 +6,29 @@ import './index.scss';
 
 const Header = (props) => {
 
-    const [clickLogin, setClickLogin] = useState(false)
+    const [clickLogin, setClickLogin] = useState(false);
+    const [login, setLogin] = useState('');
+    const [pass, setPass] = useState('');
+    const [users, setUsers] = useState([
+        {
+            login: '123',
+            pass: '123'
+        },
+        {
+            login: 'admin',
+            pass: 'admin'
+        }
+    ]);
+
+    const CheckUsers = () => {
+        users.map(user => {
+            user.login && user.pass == login && pass ?
+                localStorage.setItem('autorization', true) :
+                localStorage.setItem('autorization', false);
+        })
+    }
+
+
 
     return(
         <PageHeader
@@ -45,16 +67,21 @@ const Header = (props) => {
                             name="username"
                             rules={[{ required: true, message: 'Please input your Username!' }]}
                         >
-                            <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
+                            <Input
+                                prefix={<UserOutlined className="site-form-item-icon" />}
+                                placeholder="Username"
+                                onChange={e => setLogin(e.target.value)}
+                            />
                         </Form.Item>
                         <Form.Item
                             name="password"
                             rules={[{ required: true, message: 'Please input your Password!' }]}
                         >
                             <Input
-                            prefix={<LockOutlined className="site-form-item-icon" />}
-                            type="password"
-                            placeholder="Password"
+                                prefix={<LockOutlined className="site-form-item-icon" />}
+                                type="password"
+                                placeholder="Password"
+                                onChange={e => setPass(e.target.value)}
                             />
                         </Form.Item>
                         <Form.Item>
