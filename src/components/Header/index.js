@@ -21,11 +21,11 @@ const Header = (props) => {
     ]);
 
     const CheckUsers = () => {
-        users.map(user => {
-            user.login && user.pass == login && pass ?
-                localStorage.setItem('autorization', true) :
-                localStorage.setItem('autorization', false);
-        })
+        const autorization = users.find(user => {
+            user.login === login && user.pass === pass});
+            autorization
+                ? localStorage.setItem('autorization', true)
+                : localStorage.setItem('autorization', false)
     }
 
 
