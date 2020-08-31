@@ -20,15 +20,15 @@ const Header = (props) => {
         }
     ]);
 
-    const CheckUsers = () => {
+    const сheckUsers = () => {
         const autorization = users.find(user => {
             user.login === login && user.pass === pass});
-            autorization
-                ? localStorage.setItem('autorization', true)
-                : localStorage.setItem('autorization', false)
+
+        autorization
+            ? localStorage.setItem('autorization', true)
+            : localStorage.setItem('autorization', false)
+        return
     }
-
-
 
     return(
         <PageHeader
