@@ -5,14 +5,15 @@ import {
 } from "react-router-dom";
 
 import Body from '../Body';
-import Films from '../Films'
+import Films from '../Films';
+import PrivateRoute from '../PrivateRoute'
 
 const Container = () => {
 return(
     <div>
         <Router>
             <Route exact path='/' component={Body}/>
-            <Route path="/films" component={Films}/>
+            <PrivateRoute path="/films" component={Films}/>
         </Router>
     </div>
 )}
