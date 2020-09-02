@@ -42,7 +42,7 @@ const сheckUsers = () => {
 return(
     <>
         <PageHeader
-            style={{backgroundColor: 'white'}}
+            style={{backgroundColor: 'white', boxShadow: '1px 1px 10px rgba(0,0,0,0.6)'}}
             avatar={{ src: 'https://w7.pngwing.com/pngs/24/982/png-transparent-cinema-film-music-computer-icons-actor.png' }}
             className='header'
             title='Кинотеатр "Звезда"'
