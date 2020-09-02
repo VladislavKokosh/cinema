@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from "react-router-dom";
 
 import { Card, Button } from 'antd';
 
@@ -13,12 +14,14 @@ return(
             cover={<img alt="example" src={props.film.cover} />}
         >
             <Meta title={props.film.name}/>
-            <Button
-                type="primary"
-                style={{marginTop: '10px'}}
-            >
-                Заказать билет
-            </Button>
+            <Link to={`/aboutfilm/${props.film.id}`}>
+                <Button
+                    type="primary"
+                    style={{marginTop: '10px'}}
+                >
+                    Заказать билет
+                </Button>
+            </Link>
         </Card>
     </div>
 )}

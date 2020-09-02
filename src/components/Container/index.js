@@ -6,14 +6,17 @@ import {
 
 import Body from '../Body';
 import Films from '../Films';
+import AboutFilm from '../AboutFilm';
+import './index.scss'
 
 const Container = () => {
 
 return(
-    <div>
+    <div className='container__route'>
         <Router>
             <Route exact path='/' component={Body}/>
-            <Route path="/films" component={Films}/>
+            <Route path='/films' component={Films}/>
+            <Route path='/aboutfilm/:id' component={AboutFilm}></Route>
         </Router>
     </div>
 )}
