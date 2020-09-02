@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from "react-router-dom";
 
 import { Typography, Button, Modal } from 'antd';
 
@@ -23,13 +24,15 @@ return (
             >
                 Заказать билет онлайн.
             </Title>
-            <Button
-                className='body__order-button'
-                size="large"
-                onClick={() => checkAutorization() }
-            >
-                Заказать билет.
-            </Button>
+            <Link to={`/films`}>
+                <Button
+                    className='body__order-button'
+                    size="large"
+                    onClick={() => checkAutorization() }
+                >
+                    Заказать билет.
+                </Button>
+            </Link>
             <Modal
                 title="Ошибка авторизации"
                 visible={visibleModal}
