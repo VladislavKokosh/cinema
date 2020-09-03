@@ -1,11 +1,12 @@
 .footer {
-    position: fixed;
+    position: relative;
     height : 80px;
     bottom : 0;
     background-color: white;
     width: 100vw;
     text-align: center;
     box-shadow: -3px -3px 10px rgba(0,0,0,0.6);
+    margin-top: 20px;
 
     &__context {
         display: inline-block;

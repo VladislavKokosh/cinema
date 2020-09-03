@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
+import moment from 'moment'
+import 'moment/locale/ru'
 
-import { Image, List, Typography, Divider } from 'antd'
+import { Image, List, Typography, Divider, Button } from 'antd'
 import './index.scss'
 import films from '../../films.json'
 import times from '../../time.json'
@@ -10,14 +12,20 @@ const { Title, Paragraph } = Typography;
 const AboutFilm = (props) => {
 
     const getFilmById = (id) => {
-        const film = [];
-        films.map(fFilm => fFilm.id === id ? film+=fFilm : console.log(""))
+        const film = films.find(film =>
+            film.id === id);
         return film
     }
 
     const getTimeById = (id) => {
-       const result = times?.filter(time => time.id === id);
+       const result = times.filter(time => time.id === id);
        return result
+    }
+
+    const getTime = (time) => {
+        var ticketTime = moment(time);
+        ticketTime.local('ru');
+        return ticketTime.format('LLLL')
     }
 
     const [film, setFilm] = useState(null);
@@ -32,9 +40,9 @@ const AboutFilm = (props) => {
     }, [])
 
     return(
-        <div className="">
+        <div className="about">
 
-            <div className="about__film">
+            <div className="__film">
                 <div className="-image">
                     <Image
                         width={270}
@@ -50,16 +58,16 @@ const AboutFilm = (props) => {
                     </Typography>
                 </div>
             </div>
-            <div className="-table">
-                <Divider orientation="left">Время и дата сеансов</Divider>
+            <div className="__table">
+                <Divider orientation="left">Время и дата фильма</Divider>
                     <List
-                    header={<div>Header</div>}
-                    footer={<div>Footer</div>}
                     bordered
-                    dataSource={time}
+                    dataSource={times}
                     renderItem={item => (
                         <List.Item>
-                        <Typography.Text mark>[ITEM]</Typography.Text> {item.id}
+                            <Title level={3}>{item.hall == 1 ? 'Большой зал' : 'Малый зал'}</Title>
+                            {getTime(+item.date)}
+                            <Button className='-ticket-button'>Заказать</Button>
                         </List.Item>
                     )}
                 />

@@ -1,13 +1,22 @@
-.about__film {
-    display: flex;
-    justify-content: start;;
-    .-image {
-        margin-top: 50px;
+.about{
+    .__film {
+        display: flex;
+        justify-content: start;;
+        .-image {
+            margin-top: 50px;
+            margin-left: 160px;
+        }
+        .-text {
+            margin-top: 50px;
+            margin-left: 20px;
+            width: 500px;
+        }
+}
+    .__table {
         margin-left: 160px;
-    }
-    .-text {
-        margin-top: 50px;
-        margin-left: 20px;
-        width: 500px;
+        width: 790px;
+        .-ticket-button {
+            margin-left: 430px
+        }
     }
 }
