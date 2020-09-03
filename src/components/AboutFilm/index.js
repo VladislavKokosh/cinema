@@ -1,45 +1,25 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
-import { Image, Typography, Table } from 'antd'
+import { Image, Typography } from 'antd'
 import './index.scss'
+import films from '../../films.json'
 
 const { Title, Paragraph } = Typography;
-const { Column, ColumnGroup } = Table;
 
-const AboutFilm = () => {
+const AboutFilm = (props) => {
 
-    // const columns = [
-    //     {
-    //       title: 'Дата',
-    //       dataIndex: 'date',
-    //     },
-    //     {
-    //       title: 'Время',
-    //       dataIndex: 'time',
-    //     },
-    //     {
-    //       title: '',
-    //       dataIndex: 'button',
-    //     },
-    // ];
+    const getFilmById = (id) => {
+        const film = films.find(film =>
+            film.id === id);
+        return film
+    }
 
-    // const data = [
-    //     {
-    //       key: '1',
-    //       date: '02.09.2020, Среда',
-    //       time: '12:00'
-    //     },
-    //     {
-    //       key: '2',
-    //       date: '02.09.2020, Среда',
-    //       time: '19:00'
-    //     },
-    //     {
-    //       key: '3',
-    //       date: '03.09.2020, Четверг',
-    //       time: '12:00'
-    //     }
-    // ];
+    const [film, setFilm] = useState(null)
+
+    useEffect(()=> {
+        setFilm(getFilmById(props.match.params.id))
+    }, [])
+    console.log(film)
 
     return(
         <div className="">
@@ -47,16 +27,14 @@ const AboutFilm = () => {
                 <div className="-image">
                     <Image
                         width={200}
-                        src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
+                        src={film?.cover}
                     />
                 </div>
                 <div className="-text">
                     <Typography>
-                        <Title>Introduction</Title>
+                        <Title>{film?.name}</Title>
                         <Paragraph>
-                        In the process of internal desktop applications development, many different design specs and
-                        implementations would be involved, which might cause designers and developers difficulties and
-                        duplication and reduce the efficiency of development.
+                            {film?.about}
                         </Paragraph>
                     </Typography>
                 </div>
