@@ -10,7 +10,6 @@ return (
     <div className="App">
         <Header></Header>
         <Container></Container>
-        <Footer></Footer>
     </div>
 )}
 

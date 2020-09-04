@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 import Film from '../Film'
 import './index.scss'
-import films from '../../films.json'
+import films from '../../db/films.json'
 
 const Films = () => {
 

@@ -5,8 +5,8 @@ import 'moment/locale/ru'
 
 import { Image, List, Typography, Divider, Button } from 'antd'
 import './index.scss'
-import films from '../../films.json'
-import times from '../../time.json'
+import times from '../../db/time.json'
+import films from '../../db/films.json'
 
 const { Title, Paragraph } = Typography;
 
