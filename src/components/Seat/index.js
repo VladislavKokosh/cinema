@@ -1,8 +1,10 @@
 import React from 'react'
 
+import './index.scss'
+
 const Seat = (props) => {
 return(
-    <span>{props.seat}</span>
+    <span className='seat'>{props.seat}</span>
 )}
 
 export default Seat
