@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Link } from "react-router-dom";
 import moment from 'moment'
 import 'moment/locale/ru'
 
@@ -11,17 +12,6 @@ const { Title, Paragraph } = Typography;
 
 const AboutFilm = (props) => {
 
-    const getFilmById = (id) => {
-        const film = films.find(film =>
-            film.id === id);
-        return film
-    }
-
-    const getTimeById = (id) => {
-       const result = times.filter(time => time.id === id);
-       return result
-    }
-
     const getTime = (time) => {
         var ticketTime = moment(time);
         ticketTime.local('ru');
@@ -32,10 +22,21 @@ const AboutFilm = (props) => {
     const [time, setTime] = useState(null);
 
     useEffect(()=> {
+        const getFilmById = (id) => {
+            const film = films.find(film =>
+                film.id === id);
+            return film
+        }
+
         setFilm(getFilmById(props.match.params.id))
     }, [])
 
     useEffect(()=> {
+        const getTimeById = (id) => {
+            const result = times.filter(time => time.id === id);
+            return result
+        }
+
         setTime(getTimeById(props.match.params.id))
     }, [])
 
@@ -62,12 +63,14 @@ const AboutFilm = (props) => {
                 <Divider orientation="left">Время и дата фильма</Divider>
                     <List
                     bordered
-                    dataSource={times}
+                    dataSource={time?.length && time}
                     renderItem={item => (
                         <List.Item>
                             <Title level={3}>{item.hall == 1 ? 'Большой зал' : 'Малый зал'}</Title>
                             {getTime(+item.date)}
-                            <Button className='-ticket-button'>Заказать</Button>
+                            <Link to={`/hall`}>
+                                <Button className='-ticket-button'>Заказать</Button>
+                            </Link>
                         </List.Item>
                     )}
                 />
