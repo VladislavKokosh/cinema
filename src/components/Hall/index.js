@@ -1,5 +1,6 @@
 import React, { useEffect, useState} from 'react'
 
+import Seats from '../Seats'
 import './index.scss'
 import halls from '../../db/halls.json'
 import { Typography } from 'antd';
@@ -26,11 +27,7 @@ return(
             <Title level={5}>Экран</Title>
         </div>
         <div className="__places">
-            {hall?.seats.map(seat => {
-                for (let i = 1; i < +seat.count; i++) {
-                    return <div>A</div>
-                }
-            })}
+            <Seats hall={hall}></Seats>
         </div>
 
     </div>
