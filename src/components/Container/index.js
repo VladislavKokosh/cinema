@@ -18,7 +18,7 @@ return(
             <Route exact path='/' component={Body}/>
             <Route path='/films' component={Films}/>
             <Route path='/aboutfilm/:id' component={AboutFilm}></Route>
-            <Route path='/hall' component={Hall}></Route>
+            <Route path='/hall/:id' component={Hall}></Route>
         </Router>
     </div>
 )}

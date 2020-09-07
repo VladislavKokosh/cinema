@@ -68,7 +68,7 @@ const AboutFilm = (props) => {
                         <List.Item>
                             <Title level={3}>{item.hall == 1 ? 'Большой зал' : 'Малый зал'}</Title>
                             {getTime(+item.date)}
-                            <Link to={`/hall`}>
+                            <Link to={`/hall/${item.id}`}>
                                 <Button className='-ticket-button'>Заказать</Button>
                             </Link>
                         </List.Item>

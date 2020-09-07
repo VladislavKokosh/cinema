@@ -29,7 +29,9 @@ return(
         <div className="__places">
             <Seats hall={hall}></Seats>
         </div>
-
+        <div className="__about-places">
+            <span className="-free"></span><Title level={5}> - свободные,</Title><span className="-selected"></span><Title level={5}> - выбранные,</Title><span className="-employed"></span><Title level={5}> - заняты.</Title>
+        </div>
     </div>
 )}
 

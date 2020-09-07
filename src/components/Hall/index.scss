@@ -1,12 +1,51 @@
 .hall {
+
     .__screen {
+        margin: auto;
         margin-top: 20px;
         height: 20px;
-        width: 100%;
+        width: 600px;
         border-top-style: solid;
         border-top-width: 10px;
         border-radius: 100%;
         border-top-color: lightblue;
         text-align: center;
+    }
+
+    .__places {
+        margin-top: 60px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .__about-places {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+        text-align: center;
+
+        .-free {
+            display: inline-block;
+            height: 50px;
+            width: 50px;
+            background: lightblue;
+            border-radius: 20px;
+        }
+
+        .-selected {
+            display: inline-block;
+            height: 50px;
+            width: 50px;
+            background: blue;
+            border-radius: 20px;
+        }
+
+        .-employed {
+            display: inline-block;
+            height: 50px;
+            width: 50px;
+            background: red;
+            border-radius: 20px;
+        }
     }
 }
