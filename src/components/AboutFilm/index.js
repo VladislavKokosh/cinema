@@ -5,7 +5,7 @@ import 'moment/locale/ru'
 
 import { Image, List, Typography, Divider, Button } from 'antd'
 import './index.scss'
-import times from '../../db/time.json'
+import sessions from '../../db/session.json'
 import films from '../../db/films.json'
 
 const { Title, Paragraph } = Typography;
@@ -19,7 +19,7 @@ const AboutFilm = (props) => {
     }
 
     const [film, setFilm] = useState(null);
-    const [time, setTime] = useState(null);
+    const [session, setSession] = useState(null);
 
     useEffect(()=> {
         const getFilmById = (id) => {
@@ -32,12 +32,12 @@ const AboutFilm = (props) => {
     }, [])
 
     useEffect(()=> {
-        const getTimeById = (id) => {
-            const result = times.filter(time => time.id === id);
+        const getSessionById = (id) => {
+            const result = sessions.filter(session => session.id_film === id);
             return result
         }
 
-        setTime(getTimeById(props.match.params.id))
+        setSession(getSessionById(props.match.params.id))
     }, [])
 
     return(
@@ -63,7 +63,7 @@ const AboutFilm = (props) => {
                 <Divider orientation="left">Время и дата фильма</Divider>
                     <List
                     bordered
-                    dataSource={time?.length && time}
+                    dataSource={session?.length && session}
                     renderItem={item => (
                         <List.Item>
                             <Title level={3}>{item.hall == 1 ? 'Большой зал' : 'Малый зал'}</Title>
