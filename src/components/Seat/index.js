@@ -9,7 +9,7 @@ const { Text } = Typography;
 const Seat = (props) => {
 
     return (
-        <span className='seat'><Text strong>{props.seat}</Text></span>
+        <span className={`seat ${props.occupied ? 'seat_occupied' : ''}`}><Text strong>{props.seat}</Text></span>
     )
 }
 

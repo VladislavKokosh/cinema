@@ -36,7 +36,7 @@ const Hall = (props) => {
                 <Title level={5}>Экран</Title>
             </div>
             <div className="hall__places">
-                <Seats hall={hall}></Seats>
+                <Seats hall={hall} sessionId={props.match.params.id}></Seats>
             </div>
             <div className="hall__about-places">
                 <span className="hall__about-places-free"></span>

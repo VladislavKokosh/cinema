@@ -8,7 +8,7 @@ const Seats = (props) => {
         <div className='seats'>
             {props.hall?.seats.map((seat, index) => {
                     return (
-                        <RowSeats key={index} row={seat}></RowSeats>
+                        <RowSeats key={index} row={seat} sessionId={props.sessionId}></RowSeats>
                     )
                 })}
         </div>
