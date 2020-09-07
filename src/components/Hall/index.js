@@ -21,27 +21,25 @@ useEffect(()=> {
         return session.hall
     }
 
-    setSession(getSession(props.match.params.id))
-
     const getHallById = (id) => {
         const hall = halls.find(hall =>
             hall.id === id);
         return hall
     }
 
-    setHall(getHallById(sessionId))
+    setHall(getHallById(getSession(props.match.params.id)))
 }, [])
 
 return(
     <div className="hall">
-        <div className="__screen">
+        <div className="hall__screen">
             <Title level={5}>Экран</Title>
         </div>
-        <div className="__places">
+        <div className="hall__places">
             <Seats hall={hall}></Seats>
         </div>
-        <div className="__about-places">
-            <span className="-free"></span><Title level={5}> - свободные,</Title><span className="-selected"></span><Title level={5}> - выбранные,</Title><span className="-employed"></span><Title level={5}> - заняты,</Title>
+        <div className="hall__about-places">
+            <span className="hall__about-places-free"></span><Title level={5}> - свободные,</Title><span className="hall__about-places-selected"></span><Title level={5}> - выбранные,</Title><span className="hall__about-places-employed"></span><Title level={5}> - заняты,</Title>
         </div>
     </div>
 )}

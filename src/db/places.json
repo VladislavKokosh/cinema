@@ -2,8 +2,6 @@
     {
         "id": "1",
         "session": "1",
-        "hall": "1",
-        "film": "1",
         "seats":[
             {
                 "row": "1",

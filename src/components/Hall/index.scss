@@ -1,6 +1,6 @@
 .hall {
 
-    .__screen {
+    &__screen {
         margin: auto;
         margin-top: 20px;
         height: 20px;
@@ -12,19 +12,24 @@
         text-align: center;
     }
 
-    .__places {
+    &__places {
         margin-top: 60px;
         display: flex;
         justify-content: center;
+
+        &-row {
+            width: 10px;
+
+        }
     }
 
-    .__about-places {
+    &__about-places {
         display: flex;
         justify-content: center;
         margin-top: 20px;
         text-align: center;
 
-        .-free {
+        &-free {
             display: inline-block;
             height: 50px;
             width: 50px;
@@ -32,7 +37,7 @@
             border-radius: 20px;
         }
 
-        .-selected {
+        &-selected {
             display: inline-block;
             height: 50px;
             width: 50px;
@@ -40,7 +45,7 @@
             border-radius: 20px;
         }
 
-        .-employed {
+        &-employed {
             display: inline-block;
             height: 50px;
             width: 50px;

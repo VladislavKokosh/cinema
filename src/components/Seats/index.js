@@ -6,7 +6,9 @@ const Seats = (props) => {
 return(
     <div className='seats'>
         {props.hall?.seats.map((seat, index) => {
-                return <div><RowSeats key={index} row={seat}></RowSeats></div>
+                return (
+                    <RowSeats key={index} row={seat}></RowSeats>
+                )
             })}
     </div>
 )}
