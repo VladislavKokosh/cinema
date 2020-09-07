@@ -31,7 +31,7 @@ const AboutFilm = (props) => {
         setFilm(getFilmById(props.match.params.id))
     }, [])
 
-    useEffect(()=> {
+    useEffect(() => {
         const getSessionById = (id) => {
             const result = sessions.filter(session => session.id_film === id);
             return result
@@ -42,24 +42,25 @@ const AboutFilm = (props) => {
 
     return(
         <div className="about">
-
-            <div className="__film">
-                <div className="-image">
+            <div className="about__film">
+                <div className="about__film-image">
                     <Image
                         width={270}
                         src={film?.cover}
                     />
                 </div>
-                <div className="-text">
+                <div className="about__film-text">
                     <Typography>
-                        <Title>{film?.name}</Title>
+                        <Title>
+                            {film?.name}
+                        </Title>
                         <Paragraph>
                             {film?.about}
                         </Paragraph>
                     </Typography>
                 </div>
             </div>
-            <div className="__table">
+            <div className="about__table">
                 <Divider orientation="left">Время и дата фильма</Divider>
                     <List
                     bordered
@@ -69,7 +70,7 @@ const AboutFilm = (props) => {
                             <Title level={3}>{item.hall == 1 ? 'Большой зал' : 'Малый зал'}</Title>
                             {getTime(+item.date)}
                             <Link to={`/session/${item.id}`}>
-                                <Button className='-ticket-button'>Заказать</Button>
+                                <Button className='about__table-ticket-button'>Заказать</Button>
                             </Link>
                         </List.Item>
                     )}

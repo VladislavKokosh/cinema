@@ -1,21 +1,27 @@
 .about{
-    .__film {
+
+    &__film {
         display: flex;
-        justify-content: start;;
-        .-image {
+        justify-content: start;
+
+        &-image {
             margin-top: 50px;
             margin-left: 160px;
         }
-        .-text {
+
+        &-text {
             margin-top: 50px;
             margin-left: 20px;
             width: 500px;
         }
-}
-    .__table {
+    }
+
+    &__table {
         margin-left: 160px;
         width: 790px;
-        .-ticket-button {
+        padding-bottom: 20px;
+
+        &-ticket-button {
             margin-left: 430px
         }
     }

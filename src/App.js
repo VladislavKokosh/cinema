@@ -1,9 +1,8 @@
 import React from 'react';
 
-import 'antd/dist/antd.css';
 import Header from './components/Header';
-import Footer from './components/Footer';
 import Container from './components/Container';
+import 'antd/dist/antd.css';
 
 function App() {
 return (
