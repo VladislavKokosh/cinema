@@ -39,7 +39,12 @@ const Hall = (props) => {
                 <Seats hall={hall}></Seats>
             </div>
             <div className="hall__about-places">
-                <span className="hall__about-places-free"></span><Title level={5}> - свободные,</Title><span className="hall__about-places-selected"></span><Title level={5}> - выбранные,</Title><span className="hall__about-places-employed"></span><Title level={5}> - заняты,</Title>
+                <span className="hall__about-places-free"></span>
+                <Title level={5}> - свободные</Title>
+                <span className="hall__about-places-selected"></span>
+                <Title level={5}> - выбранные</Title>
+                <span className="hall__about-places-employed"></span>
+                <Title level={5}> - заняты</Title>
             </div>
         </div>
     )
