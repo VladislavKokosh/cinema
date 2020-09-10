@@ -1,16 +1,20 @@
-import { GET_SESSION_BY_ID, GET_SESSIONS } from "../types/sessions"
+import { GET_SESSION_BY_ID_FILM, GET_SESSIONS, GET_SESSION_BY_ID } from "../types/sessions"
 
 const initState = {
     sessions: [],
-    sessionById: []
+    sessionById: '',
+    sessionByIdFilm: null
 }
 
 export const sessionsReducer = (state = initState, action) => {
     switch(action.type){
         case GET_SESSIONS:
             return {...state, sessions: action.payload}
+        case GET_SESSION_BY_ID_FILM:
+            return { ...state, sessionByIdFilm: state.sessions.filter(session => session.id_film == action.payload)}
         case GET_SESSION_BY_ID:
-            return { ...state, sessionById: state.sessions.filter(session => session.id_film == action.payload)}
+            const sessionByID = state.sessions.find(session => session.id == action.payload)
+            return { ...state, sessionById: sessionByID }
         default: return state
     }
 }

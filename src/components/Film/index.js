@@ -5,17 +5,16 @@ import { Card, Button } from 'antd';
 
 const { Meta } = Card;
 
-const Film = (props) => {
-
+const Film = ({ film }) => {
     return(
         <div className='film' style={{marginTop: '10px'}}>
             <Card
                 hoverable
                 style={{ width: 280 }}
-                cover={<img alt="example" src={props.film.cover}/>}
+                cover={<img alt="example" src={film.cover}/>}
             >
-                <Meta title={props.film.name}/>
-                <Link to={`/aboutfilm/${props.film.id}`}>
+                <Meta title={film.name}/>
+                <Link to={`/aboutfilm/${film.id}`}>
                     <Button
                         type="primary"
                         style={{marginTop: '10px'}}

@@ -3,10 +3,9 @@ import React from 'react'
 import Seat from '../Seat'
 import places from '../../db/places.json'
 
-const RowSeats = (props) => {
+const RowSeats = ({ row, sessionId }) => {
 
-    const currentSession = places?.find(place => +place.session === +props.sessionId);
-    console.log(currentSession.seats)
+    const currentSession = places?.find(place => +place.session === +sessionId);
     const CheckPlaces = (row, place, session) => {
 
         if(session?.seats) {
@@ -20,8 +19,8 @@ const RowSeats = (props) => {
     const setPlaces = () => {
 
         let seatNumbers = [];
-        for (let i = 0; i < +props.row.count; i++) {
-            seatNumbers.push(<Seat key={i} seat={i+1} occupied={CheckPlaces(props.row.row, i+1, currentSession)}></Seat>)
+        for (let i = 0; i < +row.count; i++) {
+            seatNumbers.push(<Seat key={i} seat={i+1} occupied={CheckPlaces(row.row, i+1, currentSession)}></Seat>)
         }
         return seatNumbers
     }

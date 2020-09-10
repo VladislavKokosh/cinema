@@ -6,10 +6,10 @@ import './index.scss'
 
 const { Text } = Typography;
 
-const Seat = (props) => {
+const Seat = ({seat, occupied}) => {
 
     return (
-        <span className={`seat ${props.occupied ? 'seat_occupied' : ''}`}><Text strong>{props.seat}</Text></span>
+        <span className={`seat ${occupied ? 'seat_occupied' : ''}`}><Text strong>{seat}</Text></span>
     )
 }
 

@@ -1,16 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from "react-router-dom";
 import moment from 'moment'
 import 'moment/locale/ru'
 
 import { Image, List, Typography, Divider, Button } from 'antd'
-import { getSessions, getSessionById } from '../../store/actions/sessions'
+import { getSessions, getSessionByIdFilm } from '../../store/actions/sessions'
 import { getFilmById } from '../../store/actions/films';
 import './index.scss'
 import sessions from '../../db/session.json'
-import filmsJSON from '../../db/films.json'
-
 
 const { Title, Paragraph } = Typography;
 
@@ -24,13 +22,12 @@ const AboutFilm = (props) => {
 
     const dispatch = useDispatch()
     const film = useSelector(state => state.films.filmById)
-    const session = useSelector(state => state.sessions.sessionById)
+    const session = useSelector(state => state.sessions.sessionByIdFilm)
     useEffect(() => {
         dispatch(getFilmById(props.match.params.id))
         dispatch(getSessions(sessions))
-        dispatch(getSessionById(props.match.params.id))
+        dispatch(getSessionByIdFilm(props.match.params.id))
     }, [])
-    console.log(session)
 
     return(
         <div className="about">
@@ -56,7 +53,7 @@ const AboutFilm = (props) => {
                 <Divider orientation="left">Время и дата фильма</Divider>
                     <List
                     bordered
-                    dataSource={ session?.length && session }
+                    dataSource={ (session?.length && session) || [] }
                     renderItem={item => (
                         <List.Item>
                             <Title level={3}>{item.hall == 1 ? 'Большой зал' : 'Малый зал'}</Title>

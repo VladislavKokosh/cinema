@@ -10,10 +10,8 @@ export const filmsReducer = (state = initState, action) => {
         case GET_FILM:
             return { ...state, films: action.payload}
         case GET_FILM_BY_ID:
-            return { ...state, filmById: state.films.find(film => {
-                const result = film.id == action.payload
-                return result
-            })}
+            const film = state.films.find(film => film.id == action.payload)
+            return { ...state, filmById: film}
         default: return state
     }
 }

@@ -1,4 +1,8 @@
-import { GET_SESSIONS, GET_SESSION_BY_ID } from "../types/sessions";
+import {
+    GET_SESSIONS,
+    GET_SESSION_BY_ID_FILM,
+    GET_SESSION_BY_ID
+} from "../types/sessions";
 
 export function getSessions(session) {
     return {
@@ -7,9 +11,16 @@ export function getSessions(session) {
     }
 }
 
-export function getSessionById(id_film) {
+export function getSessionByIdFilm(id_film) {
+    return {
+        type: GET_SESSION_BY_ID_FILM,
+        payload: id_film
+    }
+}
+
+export function getSessionById(id) {
     return {
         type: GET_SESSION_BY_ID,
-        payload: id_film
+        payload: id
     }
 }

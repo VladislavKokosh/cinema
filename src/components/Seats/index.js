@@ -2,13 +2,13 @@ import React from 'react'
 
 import RowSeats from '../RowSeats'
 
-const Seats = (props) => {
+const Seats = ({ hall, sessionId}) => {
 
     return(
         <div className='seats'>
-            {props.hall?.seats.map((seat, index) => {
+            {hall?.seats.map((seat, index) => {
                     return (
-                        <RowSeats key={index} row={seat} sessionId={props.sessionId}></RowSeats>
+                        <RowSeats key={ index } row={ seat } sessionId={ sessionId }></RowSeats>
                     )
                 })}
         </div>
