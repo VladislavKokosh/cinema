@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from "react-router-dom";
 import moment from 'moment'
 import 'moment/locale/ru'
 
 import { Image, List, Typography, Divider, Button } from 'antd'
+import { getSessions, getSessionById } from '../../store/actions/sessions'
+import { getFilmById } from '../../store/actions/films';
 import './index.scss'
 import sessions from '../../db/session.json'
-import films from '../../db/films.json'
+import filmsJSON from '../../db/films.json'
+
 
 const { Title, Paragraph } = Typography;
 
@@ -18,27 +22,15 @@ const AboutFilm = (props) => {
         return ticketTime.format('LLLL')
     }
 
-    const [film, setFilm] = useState(null);
-    const [session, setSession] = useState(null);
-
-    useEffect(()=> {
-        const getFilmById = (id) => {
-            const film = films.find(film =>
-                film.id === id);
-            return film
-        }
-
-        setFilm(getFilmById(props.match.params.id))
-    }, [])
-
+    const dispatch = useDispatch()
+    const film = useSelector(state => state.films.filmById)
+    const session = useSelector(state => state.sessions.sessionById)
     useEffect(() => {
-        const getSessionById = (id) => {
-            const result = sessions.filter(session => session.id_film === id);
-            return result
-        }
-
-        setSession(getSessionById(props.match.params.id))
+        dispatch(getFilmById(props.match.params.id))
+        dispatch(getSessions(sessions))
+        dispatch(getSessionById(props.match.params.id))
     }, [])
+    console.log(session)
 
     return(
         <div className="about">
@@ -46,16 +38,16 @@ const AboutFilm = (props) => {
                 <div className="about__film-image">
                     <Image
                         width={270}
-                        src={film?.cover}
+                        src={ film?.cover }
                     />
                 </div>
                 <div className="about__film-text">
                     <Typography>
                         <Title>
-                            {film?.name}
+                            { film?.name }
                         </Title>
                         <Paragraph>
-                            {film?.about}
+                            { film?.about }
                         </Paragraph>
                     </Typography>
                 </div>
@@ -64,7 +56,7 @@ const AboutFilm = (props) => {
                 <Divider orientation="left">Время и дата фильма</Divider>
                     <List
                     bordered
-                    dataSource={session?.length && session}
+                    dataSource={ session?.length && session }
                     renderItem={item => (
                         <List.Item>
                             <Title level={3}>{item.hall == 1 ? 'Большой зал' : 'Малый зал'}</Title>

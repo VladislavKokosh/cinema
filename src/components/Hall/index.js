@@ -1,15 +1,24 @@
 import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 
 import { Typography } from 'antd';
 
 import Seats from '../Seats'
+import { getSessions } from '../../store/actions/sessions'
 import halls from '../../db/halls.json'
 import sessions from '../../db/session.json'
 import './index.scss'
 
+
 const { Title } = Typography;
 
 const Hall = (props) => {
+
+    const dispatch = useDispatch()
+    const session = useSelector(state => state.sessions.sessions)
+    useEffect(()=>{
+        dispatch(getSessions(sessions))
+    }, [])
 
     const [hall, setHall] = useState(null);
 

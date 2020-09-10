@@ -1,18 +1,23 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
-import { Scrollbars } from 'react-custom-scrollbars';
 import Film from '../Film'
-import films from '../../db/films.json'
+import { getFilms } from '../../store/actions/films'
+import filmsJSON from '../../db/films.json'
 import './index.scss'
 
 const Films = () => {
 
+    const dispatch = useDispatch();
+    const films = useSelector(state => state.films.films)
+    useEffect(()=>{
+        dispatch(getFilms(filmsJSON))
+    }, [])
+
     return(
-        <Scrollbars>
-            <div className='films'>
-                {films.map((film, index) => <Film film={film} key={index}/>)}
-            </div>
-        </Scrollbars>
+        <div className='films'>
+            {films?.map((film, index) => <Film film={film} key={index}/>)}
+        </div>
     )
 }
 
