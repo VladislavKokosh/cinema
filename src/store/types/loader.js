@@ -1,0 +1,2 @@
+export const SHOW_LOADER = 'LOADER/SHOW LOADER'
+export const HIDE_LOADER = 'LOADER/HIDE LOADER'

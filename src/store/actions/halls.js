@@ -1,5 +1,6 @@
 import { GET_HALLS, GET_HALL_BY_ID, GET_HALLS_FAILURE } from "../types/halls";
 import hallsjson from '../../db/halls.json'
+import { showLoader } from "./loader";
 
 export const getHalls = hall => (
     {
@@ -37,7 +38,7 @@ export const getHallByIdAsync = (hallId) => {
     return async(dispatch) => {
         try {
             const hallById = hallsjson.find(hall => +hall.id === +hallId)
-            setTimeout(() => dispatch(getHallById(hallById)))
+            setTimeout(() => dispatch(getHallById(hallById)), 1000)
         }
         catch(error) {
             dispatch(getHallFailure(error))

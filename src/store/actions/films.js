@@ -5,6 +5,7 @@ import
         GET_FILM_FAILURE
     }
 from "../types/films";
+import { showLoader, hideLoader } from '../../store/actions/loader'
 import filmsjson from '../../db/films.json'
 
 export const getFilms = films => (
@@ -42,21 +43,15 @@ export const getFilmsAsync = () => {
 export const getFilmByIdAsync = (filmId) => {
     return async (dispatch) => {
         try {
-            const filmById = filmsjson.find(film => film.id === filmId);
-            setTimeout(() => dispatch(getFilmById(filmById)), 1000)
+            setTimeout(() => {
+                dispatch(showLoader())
+                const filmById = filmsjson.find(film => film.id === filmId);
+                dispatch(getFilmById(filmById))
+                dispatch(hideLoader())
+            }, 1000)
         }
         catch (error) {
             dispatch(getFilmsFailure(error))
         }
     }
 }
-
-// export function getFilmById(id) {
-//     return {
-//         type: GET_FILM_BY_ID,
-//         payload: id
-//     }
-// }
-
-
-
