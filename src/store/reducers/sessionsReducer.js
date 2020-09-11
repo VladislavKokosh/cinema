@@ -1,8 +1,10 @@
-import {
-    GET_SESSION_BY_ID_FILM,
-    GET_SESSION_FAILURE,
-    GET_SESSION_HALL_ID
-} from "../types/sessions"
+import
+    {
+        GET_SESSION_BY_ID_FILM,
+        GET_SESSION_FAILURE,
+        GET_SESSION_HALL_ID
+    }
+from "../types/sessions"
 
 const initState = {
     sessions: [],

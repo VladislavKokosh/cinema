@@ -1,4 +1,10 @@
-import { GET_HALLS, GET_HALL_BY_ID, GET_HALLS_FAILURE } from "../types/halls";
+import
+    {
+        GET_HALLS,
+        GET_HALL_BY_ID,
+        GET_HALLS_FAILURE
+    }
+from "../types/halls";
 import hallsjson from '../../db/halls.json'
 import { showLoader, hideLoader } from '../../store/actions/loader'
 

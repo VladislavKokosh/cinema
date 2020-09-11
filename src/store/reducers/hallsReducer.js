@@ -1,4 +1,9 @@
-import { GET_HALLS, GET_HALL_BY_ID } from "../types/halls"
+import
+    {
+        GET_HALLS,
+        GET_HALL_BY_ID
+    }
+from "../types/halls"
 
 const initState = {
     halls: [],

@@ -1,4 +1,9 @@
-import { SHOW_LOADER, HIDE_LOADER } from "../types/loader";
+import
+    {
+        SHOW_LOADER,
+        HIDE_LOADER
+    }
+from "../types/loader";
 
 export const showLoader = () => ({
     type: SHOW_LOADER

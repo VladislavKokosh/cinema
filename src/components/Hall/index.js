@@ -9,7 +9,6 @@ import { getHallByIdAsync } from '../../store/actions/halls';
 import './index.scss'
 import Loader from '../Loader';
 
-
 const { Title } = Typography;
 
 const Hall = (props) => {
