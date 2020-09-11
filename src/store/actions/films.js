@@ -33,8 +33,10 @@ export const getFilmsAsync = () => {
     return async (dispatch) => {
         try {
             dispatch(showLoader())
-            setTimeout(() => dispatch(getFilms(filmsjson)), 7000)
-            dispatch(hideLoader())
+            setTimeout(() => {
+                dispatch(getFilms(filmsjson))
+                dispatch(hideLoader())
+            }, 1500)
         }
         catch (error) {
             dispatch(getFilmsFailure(error))
@@ -45,10 +47,12 @@ export const getFilmsAsync = () => {
 export const getFilmByIdAsync = (filmId) => {
     return async (dispatch) => {
         try {
+            dispatch(showLoader())
             setTimeout(() => {
                 const filmById = filmsjson.find(film => film.id === filmId);
                 dispatch(getFilmById(filmById))
-            }, 1000)
+                dispatch(hideLoader())
+            }, 1500)
         }
         catch (error) {
             dispatch(getFilmsFailure(error))

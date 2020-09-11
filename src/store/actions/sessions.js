@@ -3,6 +3,7 @@ import {
     GET_SESSION_FAILURE,
     GET_SESSION_HALL_ID
 } from "../types/sessions";
+import { showLoader, hideLoader } from '../../store/actions/loader'
 import sessionsjson from '../../db/session.json'
 
 export const getSessionByIdFilm = sessionByFilmId => (
@@ -29,8 +30,12 @@ export const getSessionFailure = error => (
 export const getSessionsByIdFilmAsync = (id) => {
     return async(dispatch) => {
         try {
-            const sessionByIdFilm = sessionsjson.filter(session => session.id_film === id)
-            setTimeout(() => dispatch(getSessionByIdFilm(sessionByIdFilm)), 1000)
+            dispatch(showLoader())
+            setTimeout(() => {
+                const sessionByIdFilm = sessionsjson.filter(session => session.id_film === id)
+                dispatch(getSessionByIdFilm(sessionByIdFilm))
+                dispatch(hideLoader())
+            }, 1500)
         }
         catch(error) {
             dispatch(getSessionFailure(error))

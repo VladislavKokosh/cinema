@@ -7,6 +7,7 @@ import Seats from '../Seats'
 import { getHallIdByIdSessionAsync } from '../../store/actions/sessions'
 import { getHallByIdAsync } from '../../store/actions/halls';
 import './index.scss'
+import Loader from '../Loader';
 
 
 const { Title } = Typography;
@@ -16,6 +17,7 @@ const Hall = (props) => {
     const dispatch = useDispatch()
     const sessionHall = useSelector(state => state.sessions.sessionHallId)
     const hallById = useSelector(state => state.halls.hallById)
+    const isLoading = useSelector(state => state.loading.isLoading)
     useEffect(() => {
         dispatch(getHallIdByIdSessionAsync(props.match.params.id))
     }, [])
@@ -29,9 +31,11 @@ const Hall = (props) => {
             <div className="hall__screen">
                 <Title level={5}>Экран</Title>
             </div>
-            <div className="hall__places">
-                <Seats hall={hallById}></Seats>
-            </div>
+            { isLoading ? <Loader/>:
+                <div className="hall__places">
+                    <Seats hall={hallById}></Seats>
+                </div>
+            }
             <div className="hall__about-places">
                 <span className="hall__about-places-free"></span>
                 <Title level={5}> - свободные</Title>
