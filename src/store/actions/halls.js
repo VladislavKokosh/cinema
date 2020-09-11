@@ -36,7 +36,7 @@ export const getHallsAsync = () => {
 export const getHallByIdAsync = (hallId) => {
     return async(dispatch) => {
         try {
-            const hallById = hallsjson.find(hall => hall.id === +hallId)
+            const hallById = hallsjson.find(hall => +hall.id === +hallId)
             setTimeout(() => dispatch(getHallById(hallById)))
         }
         catch(error) {

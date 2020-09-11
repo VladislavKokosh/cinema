@@ -14,7 +14,7 @@ const { Title } = Typography;
 const Hall = (props) => {
 
     const dispatch = useDispatch()
-    const sessionHall = useSelector(state => state.sessions.sessionById)
+    const sessionHall = useSelector(state => state.sessions.sessionHallId)
     const hallById = useSelector(state => state.halls.hallById)
     useEffect(() => {
         dispatch(getHallIdByIdSessionAsync(props.match.params.id))
