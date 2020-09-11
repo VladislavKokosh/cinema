@@ -2,8 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import Film from '../Film'
-import { getFilms } from '../../store/actions/films'
-import filmsJSON from '../../db/films.json'
+import { getFilmsAsync } from '../../store/actions/films'
 import './index.scss'
 
 const Films = () => {
@@ -11,7 +10,7 @@ const Films = () => {
     const dispatch = useDispatch();
     const films = useSelector(state => state.films.films)
     useEffect(()=>{
-        dispatch(getFilms(filmsJSON))
+        dispatch(getFilmsAsync())
     }, [])
 
     return(

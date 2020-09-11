@@ -1,8 +1,15 @@
-import { GET_FILM, GET_FILM_BY_ID } from "../types/films"
+import
+    {
+        GET_FILM,
+        GET_FILM_FAILURE,
+        GET_FILM_BY_ID
+    }
+from "../types/films"
 
 const initState = {
     films: [],
-    filmById: null
+    filmById: null,
+    error: ''
 }
 
 export const filmsReducer = (state = initState, action) => {
@@ -10,8 +17,9 @@ export const filmsReducer = (state = initState, action) => {
         case GET_FILM:
             return { ...state, films: action.payload}
         case GET_FILM_BY_ID:
-            const film = state.films.find(film => film.id == action.payload)
-            return { ...state, filmById: film}
+            return { ...state, filmById: action.payload}
+        case GET_FILM_FAILURE:
+            return { ...state, error: action.payload}
         default: return state
     }
 }

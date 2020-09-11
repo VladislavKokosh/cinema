@@ -5,10 +5,9 @@ import moment from 'moment'
 import 'moment/locale/ru'
 
 import { Image, List, Typography, Divider, Button } from 'antd'
-import { getSessions, getSessionByIdFilm } from '../../store/actions/sessions'
-import { getFilmById } from '../../store/actions/films';
+import { getSessionsByIdFilmAsync } from '../../store/actions/sessions'
+import { getFilmByIdAsync } from '../../store/actions/films';
 import './index.scss'
-import sessions from '../../db/session.json'
 
 const { Title, Paragraph } = Typography;
 
@@ -24,9 +23,8 @@ const AboutFilm = (props) => {
     const film = useSelector(state => state.films.filmById)
     const session = useSelector(state => state.sessions.sessionByIdFilm)
     useEffect(() => {
-        dispatch(getFilmById(props.match.params.id))
-        dispatch(getSessions(sessions))
-        dispatch(getSessionByIdFilm(props.match.params.id))
+        dispatch(getFilmByIdAsync(props.match.params.id))
+        dispatch(getSessionsByIdFilmAsync(props.match.params.id))
     }, [])
 
     return(

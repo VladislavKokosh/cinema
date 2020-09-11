@@ -10,8 +10,7 @@ export const hallsReducer = (state = initState, action) => {
         case GET_HALLS:
             return { ...state, halls: action.payload}
         case GET_HALL_BY_ID:
-            const hall = state.halls.find(hall=> hall.id == action.id)
-            return { ...state, hallById: hall}
+            return { ...state, hallById: action.payload}
         default: return state
     }
 }

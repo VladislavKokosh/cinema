@@ -7,8 +7,8 @@ import 'antd/dist/antd.css';
 function App() {
 return (
     <div className="App">
-        <Header></Header>
-        <Container></Container>
+        <Header/>
+        <Container/>
     </div>
 )}
 

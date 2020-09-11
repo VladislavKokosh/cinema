@@ -1,20 +1,24 @@
-import { GET_SESSION_BY_ID_FILM, GET_SESSIONS, GET_SESSION_BY_ID } from "../types/sessions"
+import {
+    GET_SESSION_BY_ID_FILM,
+    GET_SESSION_FAILURE,
+    GET_SESSION_HALL_ID
+} from "../types/sessions"
 
 const initState = {
     sessions: [],
-    sessionById: '',
-    sessionByIdFilm: null
+    sessionByIdFilm: [],
+    sessionHallId: '',
+    error: ''
 }
 
 export const sessionsReducer = (state = initState, action) => {
     switch(action.type){
-        case GET_SESSIONS:
-            return {...state, sessions: action.payload}
         case GET_SESSION_BY_ID_FILM:
-            return { ...state, sessionByIdFilm: state.sessions.filter(session => session.id_film == action.payload)}
-        case GET_SESSION_BY_ID:
-            const sessionByID = state.sessions.find(session => session.id == action.payload)
-            return { ...state, sessionById: sessionByID }
+            return { ...state, sessionByIdFilm: action.payload }
+        case GET_SESSION_FAILURE:
+            return { ...state, error: action.payload }
+        case GET_SESSION_HALL_ID:
+            return { ...state, sessionHallId: action.payload}
         default: return state
     }
 }

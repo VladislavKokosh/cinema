@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Typography } from 'antd';
 
 import Seats from '../Seats'
-import { getSessionById } from '../../store/actions/sessions'
-import { getHalls, getHallById } from '../../store/actions/halls';
-import halls from '../../db/halls.json'
+import { getHallIdByIdSessionAsync } from '../../store/actions/sessions'
+import { getHallByIdAsync } from '../../store/actions/halls';
 import './index.scss'
 
 
@@ -15,14 +14,15 @@ const { Title } = Typography;
 const Hall = (props) => {
 
     const dispatch = useDispatch()
-    const session = useSelector(state => state.sessions.sessionById)
+    const sessionHall = useSelector(state => state.sessions.sessionById)
     const hallById = useSelector(state => state.halls.hallById)
-
-    useEffect(()=> {
-        dispatch(getSessionById(props.match.params.id))
-        dispatch(getHalls(halls))
-        dispatch(getHallById(session.hall))
+    useEffect(() => {
+        dispatch(getHallIdByIdSessionAsync(props.match.params.id))
     }, [])
+
+    useEffect(() => {
+        dispatch(getHallByIdAsync(sessionHall))
+    }, [sessionHall])
 
     return (
         <div className="hall">
