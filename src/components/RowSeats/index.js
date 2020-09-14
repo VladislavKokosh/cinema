@@ -18,7 +18,7 @@ const RowSeats = ({ seat, currentSession }) => {
 
         let seatNumbers = [];
         for (let i = 0; i < +seat.count; i++) {
-            seatNumbers.push(<Seat key={i} seat={i+1} occupied={CheckPlaces(seat.row, i+1, currentSession)}></Seat>)
+            seatNumbers.push(<Seat key={i} seat={i+1} row={seat.row} occupied={CheckPlaces(seat.row, i+1, currentSession)}></Seat>)
         }
         return seatNumbers
     }

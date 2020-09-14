@@ -1,19 +1,32 @@
 import React from 'react'
+import { useDispatch } from 'react-redux';
 
+import { getChoisePlacesAsync } from '../../store/actions/places'
 import { Typography } from 'antd';
 
 import './index.scss'
 
+
 const { Text } = Typography;
 
-const Seat = ({seat, occupied}) => {
+const Seat = ({seat, row, occupied}) => {
+    const dispatch = useDispatch()
 
-    const onChose = () => {
-        return
+    const onChoise = () => {
+        let choiseSeat = {
+            row: row,
+            seat: seat
+        }
+        dispatch(getChoisePlacesAsync([choiseSeat]))
     }
 
     return (
-        <span className={`seat ${occupied ? 'seat_occupied' : ''}`}><Text strong>{seat}</Text></span>
+        <span
+            className={`seat ${occupied ? 'seat_occupied' : ''}`}
+            onClick={onChoise}
+        >
+            <Text strong>{seat}</Text>
+        </span>
     )
 }
 
