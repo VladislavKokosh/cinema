@@ -6,6 +6,7 @@ import { Typography } from 'antd';
 import Seats from '../Seats'
 import { getHallIdByIdSessionAsync } from '../../store/actions/sessions'
 import { getHallByIdAsync } from '../../store/actions/halls';
+import { getPlacesAsync } from '../../store/actions/places'
 import './index.scss'
 import Loader from '../Loader';
 
@@ -17,6 +18,7 @@ const Hall = (props) => {
     const sessionHall = useSelector(state => state.sessions.sessionHallId)
     const hallById = useSelector(state => state.halls.hallById)
     const isLoading = useSelector(state => state.loading.isLoading)
+    const currentSession = useSelector(state => state.places.places)
     useEffect(() => {
         dispatch(getHallIdByIdSessionAsync(props.match.params.id))
     }, [])
@@ -25,16 +27,20 @@ const Hall = (props) => {
         dispatch(getHallByIdAsync(sessionHall))
     }, [sessionHall])
 
+    useEffect(() => {
+        dispatch(getPlacesAsync(sessionHall))
+    }, [sessionHall])
+
     return (
+    <div>
+        {isLoading ? <Loader/> :
         <div className="hall">
             <div className="hall__screen">
                 <Title level={5}>Экран</Title>
             </div>
-            { isLoading ? <Loader/>:
-                <div className="hall__places">
-                    <Seats hall={hallById}></Seats>
-                </div>
-            }
+            <div className="hall__places">
+                <Seats hall={hallById} currentSession={currentSession}></Seats>
+            </div>
             <div className="hall__about-places">
                 <span className="hall__about-places-free"></span>
                 <Title level={5}> - свободные</Title>
@@ -44,6 +50,8 @@ const Hall = (props) => {
                 <Title level={5}> - заняты</Title>
             </div>
         </div>
+        }
+    </div>
     )
 }
 

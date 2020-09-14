@@ -8,6 +8,10 @@ const { Text } = Typography;
 
 const Seat = ({seat, occupied}) => {
 
+    const onChose = () => {
+        return
+    }
+
     return (
         <span className={`seat ${occupied ? 'seat_occupied' : ''}`}><Text strong>{seat}</Text></span>
     )

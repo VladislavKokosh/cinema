@@ -1,11 +1,9 @@
 import React from 'react'
 
 import Seat from '../Seat'
-import places from '../../db/places.json'
 
-const RowSeats = ({ row, sessionId }) => {
+const RowSeats = ({ seat, currentSession }) => {
 
-    const currentSession = places?.find(place => +place.session === +sessionId);
     const CheckPlaces = (row, place, session) => {
 
         if(session?.seats) {
@@ -19,8 +17,8 @@ const RowSeats = ({ row, sessionId }) => {
     const setPlaces = () => {
 
         let seatNumbers = [];
-        for (let i = 0; i < +row.count; i++) {
-            seatNumbers.push(<Seat key={i} seat={i+1} occupied={CheckPlaces(row.row, i+1, currentSession)}></Seat>)
+        for (let i = 0; i < +seat.count; i++) {
+            seatNumbers.push(<Seat key={i} seat={i+1} occupied={CheckPlaces(seat.row, i+1, currentSession)}></Seat>)
         }
         return seatNumbers
     }
