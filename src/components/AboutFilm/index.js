@@ -27,6 +27,7 @@ const AboutFilm = (props) => {
     useEffect(() => {
         dispatch(getFilmByIdAsync(props.match.params.id))
         dispatch(getSessionsByIdFilmAsync(props.match.params.id))
+         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return(
@@ -59,7 +60,7 @@ const AboutFilm = (props) => {
                         dataSource={ (session?.length && session) || [] }
                         renderItem={item => (
                             <List.Item>
-                                <Title level={3}>{item.hall == 1 ? 'Большой зал' : 'Малый зал'}</Title>
+                                <Title level={3}>{+item.hall === 1 ? 'Большой зал' : 'Малый зал'}</Title>
                                 {getTime(+item.date)}
                                 <Link to={`/session/${item.id}`}>
                                     <Button className='about__table-ticket-button'>Заказать</Button>

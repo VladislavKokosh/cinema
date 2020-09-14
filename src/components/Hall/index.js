@@ -21,14 +21,17 @@ const Hall = (props) => {
     const currentSession = useSelector(state => state.places.places)
     useEffect(() => {
         dispatch(getHallIdByIdSessionAsync(props.match.params.id))
+         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     useEffect(() => {
         dispatch(getHallByIdAsync(sessionHall))
+         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [sessionHall])
 
     useEffect(() => {
         dispatch(getPlacesAsync(sessionHall))
+         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [sessionHall])
 
     return (

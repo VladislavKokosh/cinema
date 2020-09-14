@@ -13,7 +13,7 @@ const Body = () => {
 
     const checkAutorization = () => {
         let getAutorization = localStorage.getItem('autorization');
-        return console.log('')
+        return console.log(getAutorization)
     }
 
     return (

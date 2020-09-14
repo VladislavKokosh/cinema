@@ -13,6 +13,7 @@ const Films = () => {
     const isLoading = useSelector(state => state.loading.isLoading)
     useEffect(()=> {
         dispatch(getFilmsAsync())
+         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return(

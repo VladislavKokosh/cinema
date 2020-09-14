@@ -1,4 +1,4 @@
-import { GET_PLACES, GET_PLACES_FAILURE, SET_CHOISE_PLACES, GET_CHOISE_PLACES } from '../types/places'
+import { GET_PLACES, GET_PLACES_FAILURE, SET_CHOISE_PLACES } from '../types/places'
 import placesjson from '../../db/places.json'
 
 export const getPlaces = places => (

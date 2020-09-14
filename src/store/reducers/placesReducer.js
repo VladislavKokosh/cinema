@@ -1,4 +1,4 @@
-import { GET_PLACES, GET_PLACES_FAILURE, SET_CHOISE_PLACES, GET_CHOISE_PLACES } from "../types/places"
+import { GET_PLACES, GET_PLACES_FAILURE, SET_CHOISE_PLACES } from "../types/places"
 
 const initState = {
     places: [],
@@ -13,8 +13,8 @@ export const placesReducer = (state = initState, action) => {
 
         case SET_CHOISE_PLACES:
             const checkCurrentSeat = state.choisePlaces.find(place =>
-                action.payload.row == place.row &&
-                action.payload.seat == place.seat
+                action.payload.row === place.row &&
+                action.payload.seat === place.seat
             )
             const selectedSeats = checkCurrentSeat ?
                 state.choisePlaces.filter(place => place !== checkCurrentSeat):
