@@ -1,4 +1,4 @@
-import { GET_PLACES, GET_PLACES_FAILURE, GET_CHOISE_PLACES } from '../types/places'
+import { GET_PLACES, GET_PLACES_FAILURE, SET_CHOISE_PLACES, GET_CHOISE_PLACES } from '../types/places'
 import placesjson from '../../db/places.json'
 
 export const getPlaces = places => (
@@ -8,9 +8,9 @@ export const getPlaces = places => (
     }
 )
 
-export const getChoisePlaces = places => (
+export const setChoisePlaces = places => (
     {
-        type: GET_CHOISE_PLACES,
+        type: SET_CHOISE_PLACES,
         payload: places
     }
 )
@@ -36,11 +36,11 @@ export const getPlacesAsync = (sessionId) => {
     }
 }
 
-export const getChoisePlacesAsync = (choisePlaces) => {
+export const setChoisePlacesAsync = (choisePlaces) => {
     return async(dispatch) => {
         try {
             setTimeout(()=> {
-                dispatch(getChoisePlaces(choisePlaces))
+                dispatch(setChoisePlaces(choisePlaces))
             }, 10)
         }
         catch (error) {

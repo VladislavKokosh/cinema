@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux';
 
-import { getChoisePlacesAsync } from '../../store/actions/places'
+import { setChoisePlacesAsync } from '../../store/actions/places'
 import { Typography } from 'antd';
 
 import './index.scss'
@@ -13,11 +13,12 @@ const Seat = ({seat, row, occupied}) => {
     const dispatch = useDispatch()
 
     const onChoise = () => {
+
         let choiseSeat = {
             row: row,
             seat: seat
         }
-        dispatch(getChoisePlacesAsync([choiseSeat]))
+        dispatch(setChoisePlacesAsync(choiseSeat))
     }
 
     return (
