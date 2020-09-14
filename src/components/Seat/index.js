@@ -9,7 +9,7 @@ import './index.scss'
 
 const { Text } = Typography;
 
-const Seat = ({seat, row, occupied}) => {
+const Seat = ({seat, row, occupied, choise}) => {
     const dispatch = useDispatch()
 
     const onChoise = () => {
@@ -23,7 +23,7 @@ const Seat = ({seat, row, occupied}) => {
 
     return (
         <span
-            className={`seat ${occupied ? 'seat_occupied' : ''}`}
+            className={`seat ${occupied ? 'seat_occupied' : ''} ${choise ? 'seat_choise': ''}`}
             onClick={onChoise}
         >
             <Text strong>{seat}</Text>
