@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from "react-router-dom";
 
 import { Typography, Button } from 'antd';
 
 import Seats from '../Seats'
+import { getSessionByIdAsync } from '../../store/actions/sessions'
 import { getHallIdByIdSessionAsync } from '../../store/actions/sessions'
 import { getHallByIdAsync } from '../../store/actions/halls';
 import { getPlacesAsync } from '../../store/actions/places'
+
 import './index.scss'
 import Loader from '../Loader';
 
@@ -38,6 +41,10 @@ const Hall = (props) => {
     }, [sessionHall])
 
     useEffect(() => {
+        dispatch(getSessionByIdAsync(props.match.params.id))
+    }, [])
+
+    useEffect(() => {
         const sum = choisePlaces.reduce((sum, value) => sum + +value.cost, 0)
         setCostSum(sum)
     }, [choisePlaces])
@@ -65,6 +72,7 @@ const Hall = (props) => {
                     choisePlaces?.length ? choisePlaces.map((choise, index) => (
                         <div
                             className="hall__choise-places-ticket"
+                            key={index}
                         >
                             Билет № {index+1}
                             <p>Ряд {choise.row}, место {choise.seat}</p>
@@ -79,11 +87,13 @@ const Hall = (props) => {
             </div>
             <div className="hall__purchase">
                 <Title level={5}>Цена билетов: {costSum} руб.</Title>
-                <Button
-                    type="primary"
-                >
-                    Купить
-                </Button>
+                <Link to={`/ticket`}>
+                    <Button
+                        type="primary"
+                    >
+                        Купить
+                    </Button>
+                </Link>
             </div>
         </div>
         }

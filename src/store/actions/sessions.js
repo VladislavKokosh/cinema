@@ -1,5 +1,6 @@
 import
     {
+        GET_SESSION_BY_ID,
         GET_SESSION_BY_ID_FILM,
         GET_SESSION_FAILURE,
         GET_SESSION_HALL_ID
@@ -19,6 +20,13 @@ export const getHallIdByIdSession = hallBySessionId => (
     {
         type: GET_SESSION_HALL_ID,
         payload: hallBySessionId
+    }
+)
+
+export const getSessionById = sessionById => (
+    {
+        type: GET_SESSION_BY_ID,
+        payload: sessionById
     }
 )
 
@@ -50,6 +58,22 @@ export const getHallIdByIdSessionAsync = (id) => {
         try {
             const hallByIdFilm = sessionsjson.find(session => session.id === id)
             setTimeout(() => dispatch(getHallIdByIdSession(+hallByIdFilm.hall)), 1000)
+        }
+        catch(error) {
+            dispatch(getSessionFailure(error))
+        }
+    }
+}
+
+export const getSessionByIdAsync = (id) => {
+    return async(dispatch) => {
+        try {
+            dispatch(showLoader())
+            setTimeout(() => {
+                const sessionById = sessionsjson.find(session => session.id === id)
+                dispatch(getSessionById(sessionById))
+                dispatch(hideLoader())
+            }, 1500)
         }
         catch(error) {
             dispatch(getSessionFailure(error))
