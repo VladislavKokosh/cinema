@@ -38,7 +38,7 @@ const Hall = (props) => {
     }, [sessionHall])
 
     useEffect(() => {
-        const sum = choisePlaces.reduce((sum, value) => sum + +value.cost, costSum)
+        const sum = choisePlaces.reduce((sum, value) => sum + +value.cost, 0)
         setCostSum(sum)
     }, [choisePlaces])
 
