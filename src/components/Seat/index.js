@@ -9,14 +9,15 @@ import './index.scss'
 
 const { Text } = Typography;
 
-const Seat = ({seat, row, occupied, choise}) => {
-    const dispatch = useDispatch()
+const Seat = ({seat, row, cost, occupied, choise}) => {
 
+    const dispatch = useDispatch()
     const onChoise = () => {
 
         let choiseSeat = {
             row: row,
-            seat: seat
+            seat: seat,
+            cost: cost
         }
         dispatch(setChoisePlacesAsync(choiseSeat))
     }

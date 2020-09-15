@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Typography } from 'antd';
+import { Typography, Button } from 'antd';
 
 import Seats from '../Seats'
 import { getHallIdByIdSessionAsync } from '../../store/actions/sessions'
@@ -19,6 +19,9 @@ const Hall = (props) => {
     const hallById = useSelector(state => state.halls.hallById)
     const isLoading = useSelector(state => state.loading.isLoading)
     const currentSession = useSelector(state => state.places.places)
+    const choisePlaces = useSelector(state => state.places.choisePlaces)
+    const [costSum, setCostSum] = useState(0)
+
     useEffect(() => {
         dispatch(getHallIdByIdSessionAsync(props.match.params.id))
          // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -33,6 +36,11 @@ const Hall = (props) => {
         dispatch(getPlacesAsync(sessionHall))
          // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [sessionHall])
+
+    useEffect(() => {
+        const sum = choisePlaces.reduce((sum, value) => sum + +value.cost, costSum)
+        setCostSum(sum)
+    }, [choisePlaces])
 
     return (
     <div>
@@ -51,6 +59,31 @@ const Hall = (props) => {
                 <Title level={5}> - выбранные</Title>
                 <span className="hall__about-places-employed"></span>
                 <Title level={5}> - заняты</Title>
+            </div>
+            <div className="hall__choise-places">
+                {
+                    choisePlaces?.length ? choisePlaces.map((choise, index) => (
+                        <div
+                            className="hall__choise-places-ticket"
+                        >
+                            Билет № {index+1}
+                            <p>Ряд {choise.row}, место {choise.seat}</p>
+                        </div>
+                    )) :
+                    <div
+                        className="hall__choise-places-nothing"
+                    >
+                        Вы не выбрали место.
+                    </div>
+                }
+            </div>
+            <div className="hall__purchase">
+                <Title level={5}>Цена билетов: {costSum} руб.</Title>
+                <Button
+                    type="primary"
+                >
+                    Купить
+                </Button>
             </div>
         </div>
         }

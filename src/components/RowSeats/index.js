@@ -34,6 +34,7 @@ const RowSeats = ({ seat, currentSession }) => {
                     key={i}
                     seat={i+1}
                     row={seat.row}
+                    cost={seat.cost}
                     choise ={CheckChoisePlaces(seat.row, i+1,choisePlaces)}
                     occupied={CheckPlaces(seat.row, i+1, currentSession)}
                 ></Seat>)
