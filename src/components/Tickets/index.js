@@ -1,14 +1,16 @@
 import React, {useState, useEffect} from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { Typography, Button } from 'antd';
 
 import Ticket from '../Ticket'
 import './index.scss'
+import { setPlacesAsync } from '../../store/actions/places';
 
 const { Title } = Typography;
 
 const Tickets = () => {
+    const dispatch = useDispatch()
     const film = useSelector(state => state.films.filmById)
     const hall = useSelector(state => state.halls.hallById)
     const session = useSelector(state => state.sessions.sessionById)
@@ -20,6 +22,11 @@ const Tickets = () => {
         const sum = choisePlaces.reduce((sum, value) => sum + +value.cost, 0)
         setCostSum(sum)
     }, [choisePlaces])
+
+    const onClickBuy = () => {
+        dispatch(setPlacesAsync({id: 1, choisePlaces:choisePlaces}))
+    }
+
     return(
         <div className="ordering">
             <div className='__tickets'>
@@ -38,7 +45,7 @@ const Tickets = () => {
             </div>
             <div className="__purchase">
                 <Title level={5}>Стоимость билетов: {costSum} блр. руб.</Title>
-                <Button type="primary">Купить</Button>
+                <Button type="primary" onClick={onClickBuy()}>Купить</Button>
             </div>
         </div>
     )

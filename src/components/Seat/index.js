@@ -13,11 +13,12 @@ const Seat = ({seat, row, cost, occupied, choise}) => {
 
     const dispatch = useDispatch()
     const onChoise = () => {
-
+        let user = localStorage.getItem('user');
         let choiseSeat = {
             row: row,
             seat: seat,
-            cost: cost
+            cost: cost,
+            user: user
         }
         dispatch(setChoisePlacesAsync(choiseSeat))
     }

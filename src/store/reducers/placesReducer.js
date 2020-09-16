@@ -1,4 +1,4 @@
-import { GET_PLACES, GET_PLACES_FAILURE, SET_CHOISE_PLACES } from "../types/places"
+import { GET_PLACES, GET_PLACES_FAILURE, SET_CHOISE_PLACES, SET_PLACES } from "../types/places"
 
 const initState = {
     places: [],
@@ -20,6 +20,12 @@ export const placesReducer = (state = initState, action) => {
                 state.choisePlaces.filter(place => place !== checkCurrentSeat):
                 [...state.choisePlaces, action.payload]
             return { ...state, choisePlaces: selectedSeats}
+
+        case SET_PLACES:
+            const placeById = state.places?.find(place => +place.session === +action.payload.id);
+            console.log(placeById)
+            const places = [...placeById?.seats, ...action.payload.choisePlaces]
+            return { ...state, places: places}
 
         case GET_PLACES_FAILURE:
             return { ...state, error: action.payload }
