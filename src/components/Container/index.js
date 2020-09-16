@@ -10,6 +10,7 @@ import AboutFilm from '../AboutFilm';
 import Hall from '../Hall';
 import './index.scss'
 import Tickets from '../Tickets';
+import PrivateRoute from '../PrivateRoute';
 
 const Container = () => {
 
@@ -20,7 +21,7 @@ const Container = () => {
                 <Route path='/films' component={Films}/>
                 <Route path='/aboutfilm/:id' component={AboutFilm}></Route>
                 <Route path='/session/:id' component={Hall}></Route>
-                <Route path='/ticket' component={Tickets}></Route>
+                <PrivateRoute path='/ticket' component={Tickets}></PrivateRoute>
             </Router>
         </div>
     )
