@@ -1,0 +1,23 @@
+.ticket {
+    margin-top: 20px;
+
+    &__about {
+        margin-top: 10px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        border-bottom:  2px dotted #1E90FF;
+    }
+
+    &__footer {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        flex-wrap: wrap;
+
+        &-date {
+            width: 200px;
+        }
+    }
+}
