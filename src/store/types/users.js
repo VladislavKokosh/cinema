@@ -1,0 +1,3 @@
+export const SET_USERS = 'USERS/SET USERS'
+export const GET_USERS = 'USERS/GET USERS'
+export const GET_USERS_FAILURE = 'USERS/GET USERS FAILURE'

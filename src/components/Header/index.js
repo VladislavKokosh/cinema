@@ -3,23 +3,16 @@ import React, { useState, useEffect } from 'react'
 import { PageHeader, Button, Modal, Form, Input, Checkbox  } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import './index.scss';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUsersAsync } from '../../store/actions/users';
 
 const Header = () => {
-
+    const dispatch = useDispatch()
+    const users = useSelector(state => state.users.users)
     const [clickLogin, setClickLogin] = useState(false);
     const [login, setLogin] = useState('');
     const [pass, setPass] = useState('');
     const [autorization, setAutorization] = useState(false);
-    const [users, setUsers] = useState([
-        {
-            login: '123',
-            pass: '123'
-        },
-        {
-            login: 'admin',
-            pass: 'admin'
-        }
-    ]);
 
     useEffect(() => {
         setAutorization(localStorage.getItem('autorization'))
@@ -32,12 +25,18 @@ const Header = () => {
 
         if (autorizationUser) {
             localStorage.setItem('autorization', true);
+            localStorage.setItem('user', autorizationUser.login)
             setAutorization(true)
             setClickLogin(false);
         } else {
             localStorage.setItem('autorization', false);
             setAutorization(false);
         }
+    }
+
+    const checkLogin = () => {
+        dispatch(getUsersAsync())
+        setClickLogin(true)
     }
 
     return (
@@ -52,7 +51,7 @@ const Header = () => {
                     !autorization
                     ? <Button
                         key='1'
-                        onClick={() => setClickLogin(true)}
+                        onClick={() => {checkLogin()}}
                         >
                             Log In
                         </Button>

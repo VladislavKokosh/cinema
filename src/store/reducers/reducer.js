@@ -4,11 +4,13 @@ import { sessionsReducer } from './sessionsReducer'
 import { hallsReducer } from './hallsReducer'
 import { loaderReducer } from './loaderReducer'
 import { placesReducer } from './placesReducer'
+import { usersReducer } from './usersReducer'
 
 export const reducer = combineReducers({
     films: filmsReducer,
     sessions: sessionsReducer,
     halls: hallsReducer,
     places: placesReducer,
-    loading: loaderReducer
+    loading: loaderReducer,
+    users: usersReducer
 })

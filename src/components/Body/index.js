@@ -9,10 +9,13 @@ const { Title } = Typography;
 
 const Body = () => {
 
+    const [autorization, setAutorization] = useState(false)
     const [visibleModal, setVisibleModal] = useState(false);
 
     const checkAutorization = () => {
         let getAutorization = localStorage.getItem('autorization');
+        getAutorization ? setVisibleModal(false) : setVisibleModal(true)
+        setAutorization(getAutorization)
         return console.log(getAutorization)
     }
 
@@ -22,7 +25,7 @@ const Body = () => {
                 <Title className='body__order-title'>
                     Заказать билет онлайн.
                 </Title>
-                <Link to={`/films`}>
+                <Link to={`${autorization ? '/films':'/'}`}>
                     <Button
                         className='body__order-button'
                         size="large"
