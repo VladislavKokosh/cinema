@@ -33,8 +33,10 @@ export const getFilmsFailure = error => (
 export const getFilmsAsync = () => {
     return async (dispatch) => {
         try {
-           const { data } = await axios.get(`http://localhost:8080/films`)
-           dispatch(getFilms(data))
+            dispatch(showLoader())
+            const { data } = await axios.get(`http://localhost:8080/films`)
+            dispatch(getFilms(data))
+            dispatch(hideLoader())
         }
         catch (error) {
             dispatch(getFilmsFailure(error))
@@ -46,11 +48,9 @@ export const getFilmByIdAsync = (filmId) => {
     return async (dispatch) => {
         try {
             dispatch(showLoader())
-            setTimeout(() => {
-                const filmById = filmsjson.find(film => film.id === filmId);
-                dispatch(getFilmById(filmById))
-                dispatch(hideLoader())
-            }, 1500)
+            const { data } = await axios.get(`http://localhost:8080/films/${filmId}`)
+            dispatch(getFilmById(data))
+            dispatch(hideLoader())
         }
         catch (error) {
             dispatch(getFilmsFailure(error))
