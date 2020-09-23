@@ -1,3 +1,4 @@
+import axios from "axios";
 import
     {
         GET_FILM,
@@ -32,11 +33,8 @@ export const getFilmsFailure = error => (
 export const getFilmsAsync = () => {
     return async (dispatch) => {
         try {
-            dispatch(showLoader())
-            setTimeout(() => {
-                dispatch(getFilms(filmsjson))
-                dispatch(hideLoader())
-            }, 1500)
+           const { data } = await axios.get(`http://localhost:8080/films`)
+           dispatch(getFilms(data))
         }
         catch (error) {
             dispatch(getFilmsFailure(error))

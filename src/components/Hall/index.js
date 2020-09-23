@@ -21,7 +21,7 @@ const Hall = (props) => {
     const sessionHall = useSelector(state => state.sessions.sessionHallId)
     const hallById = useSelector(state => state.halls.hallById)
     const isLoading = useSelector(state => state.loading.isLoading)
-    const currentSession = useSelector(state => state.places.places)
+    const currentSession = useSelector(state => state.places.places[0])
     const choisePlaces = useSelector(state => state.places.choisePlaces)
     const [costSum, setCostSum] = useState(0)
 

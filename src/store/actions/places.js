@@ -33,7 +33,7 @@ export const getPlacesAsync = (sessionId) => {
     return async (dispatch) => {
         try {
             setTimeout(() => {
-                const places = placesjson?.find(place => +place.session === +sessionId);
+                const places = placesjson?.filter(place => +place.session === +sessionId);
                 dispatch(getPlaces(places))
             }, 1500)
         }
