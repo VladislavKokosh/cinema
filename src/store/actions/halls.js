@@ -1,3 +1,4 @@
+import axios from "axios";
 import
     {
         GET_HALLS,
@@ -32,7 +33,8 @@ export const getHallFailure = error => (
 export const getHallsAsync = () => {
     return async(dispatch) => {
         try {
-            setTimeout(() => dispatch(getHalls(hallsjson)), 1000)
+            const { data } = axios.get(`http://localhost:8080/films`)
+            dispatch(getHalls(data))
         }
         catch(error) {
             dispatch(getHallFailure(error))
