@@ -42,7 +42,7 @@ export const getSessionsByIdFilmAsync = (id) => {
     return async(dispatch) => {
         try {
             dispatch(showLoader())
-            const { data } = await axios.get(`http://localhost:8080/sessions/${id}`)
+            const { data } = await axios.get(`http://localhost:8080/sessions/byFilm/${id}`)
             dispatch(getSessionByIdFilm(data))
             dispatch(hideLoader())
         }
@@ -55,8 +55,8 @@ export const getSessionsByIdFilmAsync = (id) => {
 export const getHallIdByIdSessionAsync = (id) => {
     return async(dispatch) => {
         try {
-            const hallByIdFilm = sessionsjson.find(session => session.id === id)
-            setTimeout(() => dispatch(getHallIdByIdSession(+hallByIdFilm.hall)), 1000)
+            const { data } = await axios.get(`http://localhost:8080/sessions/${id}`)
+            dispatch(getHallIdByIdSession(data.hall))
         }
         catch(error) {
             dispatch(getSessionFailure(error))
@@ -68,11 +68,9 @@ export const getSessionByIdAsync = (id) => {
     return async(dispatch) => {
         try {
             dispatch(showLoader())
-            setTimeout(() => {
-                const sessionById = sessionsjson.find(session => session.id === id)
-                dispatch(getSessionById(sessionById))
-                dispatch(hideLoader())
-            }, 1500)
+            const { data } = await axios.get(`http://localhost:8080/sessions/${id}`)
+            dispatch(getSessionById(data))
+            dispatch(hideLoader())
         }
         catch(error) {
             dispatch(getSessionFailure(error))

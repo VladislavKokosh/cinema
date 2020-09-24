@@ -33,7 +33,7 @@ export const getHallFailure = error => (
 export const getHallsAsync = () => {
     return async(dispatch) => {
         try {
-            const { data } = axios.get(`http://localhost:8080/films`)
+            const { data } = axios.get(`http://localhost:8080/halls`)
             dispatch(getHalls(data))
         }
         catch(error) {
@@ -46,11 +46,9 @@ export const getHallByIdAsync = (hallId) => {
     return async(dispatch) => {
         try {
             dispatch(showLoader())
-            setTimeout(() => {
-                const hallById = hallsjson.find(hall => +hall.id === +hallId)
-                dispatch(getHallById(hallById))
-                dispatch(hideLoader())
-            }, 1000)
+            const { data } = axios.get(`http://localhost:8080/halls/${hallId}`)
+            dispatch(getHallById(data))
+            dispatch(hideLoader())
         }
         catch(error) {
             dispatch(getHallFailure(error))
