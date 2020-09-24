@@ -7,7 +7,6 @@ import
     }
 from "../types/films";
 import { showLoader, hideLoader } from '../../store/actions/loader'
-import filmsjson from '../../db/films.json'
 
 export const getFilms = films => (
     {

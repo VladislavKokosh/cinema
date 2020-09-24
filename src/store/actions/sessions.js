@@ -1,3 +1,4 @@
+import axios from "axios";
 import
     {
         GET_SESSION_BY_ID,
@@ -41,11 +42,9 @@ export const getSessionsByIdFilmAsync = (id) => {
     return async(dispatch) => {
         try {
             dispatch(showLoader())
-            setTimeout(() => {
-                const sessionByIdFilm = sessionsjson.filter(session => session.id_film === id)
-                dispatch(getSessionByIdFilm(sessionByIdFilm))
-                dispatch(hideLoader())
-            }, 1500)
+            const { data } = await axios.get(`http://localhost:8080/sessions/${id}`)
+            dispatch(getSessionByIdFilm(data))
+            dispatch(hideLoader())
         }
         catch(error) {
             dispatch(getSessionFailure(error))
