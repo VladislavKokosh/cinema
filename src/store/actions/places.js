@@ -1,3 +1,4 @@
+import axios from "axios";
 import { GET_PLACES, GET_PLACES_FAILURE, SET_CHOISE_PLACES, SET_PLACES } from '../types/places'
 import placesjson from '../../db/places.json'
 
@@ -32,10 +33,8 @@ export const getPlacesFailure = error => (
 export const getPlacesAsync = (sessionId) => {
     return async (dispatch) => {
         try {
-            setTimeout(() => {
-                const places = placesjson?.filter(place => +place.session === +sessionId);
-                dispatch(getPlaces(places))
-            }, 1500)
+            const { data } = await axios.get(`http://localhost:8080/places/${sessionId}`)
+            dispatch(getPlaces(data))
         }
         catch (error) {
             dispatch(getPlacesFailure(error))

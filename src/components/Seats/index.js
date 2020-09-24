@@ -6,7 +6,7 @@ const Seats = ({ hall, currentSession }) => {
 
     return(
         <div className='seats'>
-            {hall?.seats.map((seat, index) => {
+            {hall?.seats?.map((seat, index) => {
                     return (
                         <RowSeats key={ index } seat = { seat } currentSession={ currentSession }></RowSeats>
                     )
