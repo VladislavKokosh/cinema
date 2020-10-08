@@ -53,7 +53,7 @@ const Hall = (props) => {
                 <Title level={5}>Экран</Title>
             </div>
             <div className="hall__places">
-                <Seats hall={hallById} currentSession={currentSession}></Seats>
+                <Seats hall={hallById} currentSession={currentSession} sessionId={sessionHall}></Seats>
             </div>
             <div className="hall__about-places">
                 <span className="hall__about-places-free"></span>
@@ -71,7 +71,7 @@ const Hall = (props) => {
                             key={index}
                         >
                             Билет № {index+1}
-                            <p>Ряд {choise.row}, место {choise.seat}</p>
+                            <p>Ряд {choise.row}, место {choise.place}</p>
                         </div>
                     )) :
                     <div

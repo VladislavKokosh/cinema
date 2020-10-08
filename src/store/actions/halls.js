@@ -6,7 +6,6 @@ import
         GET_HALLS_FAILURE
     }
 from "../types/halls";
-import hallsjson from '../../db/halls.json'
 import { showLoader, hideLoader } from '../../store/actions/loader'
 
 export const getHalls = hall => (

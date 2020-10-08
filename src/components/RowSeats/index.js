@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 
 import Seat from '../Seat'
 
-const RowSeats = ({ seat, currentSession }) => {
+const RowSeats = ({ seat, currentSession, sessionId }) => {
 
     const choisePlaces = useSelector(state => state.places.choisePlaces)
     const CheckPlaces = (row, place, session) => {
@@ -18,8 +18,7 @@ const RowSeats = ({ seat, currentSession }) => {
     const CheckChoisePlaces = (row, place, choisePlaces) => {
 
         if(choisePlaces) {
-            const choise = choisePlaces.find(seat => +seat.seat === +place && +seat.row === +row)
-            console.log(choise)
+            const choise = choisePlaces.find(seat => +seat.place === +place && +seat.row === +row)
             return !!choise
         }
         return false
@@ -31,6 +30,7 @@ const RowSeats = ({ seat, currentSession }) => {
         for (let i = 0; i < +seat.count; i++) {
             seatNumbers.push(
                 <Seat
+                    sessionId={sessionId}
                     key={i}
                     seat={i+1}
                     row={seat.row}

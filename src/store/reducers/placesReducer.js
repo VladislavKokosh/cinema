@@ -14,10 +14,14 @@ export const placesReducer = (state = initState, action) => {
         case SET_CHOISE_PLACES:
             const checkCurrentSeat = state.choisePlaces.find(place =>
                 action.payload.row === place.row &&
-                action.payload.seat === place.seat
+                action.payload.place === place.place
             )
             const selectedSeats = checkCurrentSeat ?
-                state.choisePlaces.filter(place => place !== checkCurrentSeat):
+                state.choisePlaces.filter(place =>
+                    place.id_session !== checkCurrentSeat.id_session &&
+                    place.row !== checkCurrentSeat.row &&
+                    place.place !== checkCurrentSeat.place &&
+                    place.id_user !== checkCurrentSeat.id_user) :
                 [...state.choisePlaces, action.payload]
             return { ...state, choisePlaces: selectedSeats}
 
