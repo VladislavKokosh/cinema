@@ -5,6 +5,7 @@ import { hallsReducer } from './hallsReducer'
 import { loaderReducer } from './loaderReducer'
 import { placesReducer } from './placesReducer'
 import { usersReducer } from './usersReducer'
+import { modalReducer } from './modalReducer'
 
 export const reducer = combineReducers({
     films: filmsReducer,
@@ -12,5 +13,6 @@ export const reducer = combineReducers({
     halls: hallsReducer,
     places: placesReducer,
     loading: loaderReducer,
-    users: usersReducer
+    users: usersReducer,
+    modal: modalReducer
 })

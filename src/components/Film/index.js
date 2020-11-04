@@ -10,7 +10,10 @@ const Film = ({ film }) => {
         <div className='film' style={{marginTop: '10px'}}>
             <Card
                 hoverable
-                style={{ width: 280 }}
+                style={{
+                    width: 280,
+                    border: '3px solid #f0f0f0'
+                }}
                 cover={<img alt="example" src={film.cover}/>}
             >
                 <Meta title={film.name}/>

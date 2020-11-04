@@ -33,6 +33,7 @@ const Hall = (props) => {
 
     useEffect(() => {
         dispatch(getHallByIdAsync(sessionHall))
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [sessionHall])
 
     useEffect(() => {
@@ -53,7 +54,11 @@ const Hall = (props) => {
                 <Title level={5}>Экран</Title>
             </div>
             <div className="hall__places">
-                <Seats hall={hallById} currentSession={currentSession} sessionId={sessionHall}></Seats>
+                <Seats
+                    hall={hallById}
+                    currentSession={currentSession}
+                    sessionId={sessionHall}
+                />
             </div>
             <div className="hall__about-places">
                 <span className="hall__about-places-free"></span>

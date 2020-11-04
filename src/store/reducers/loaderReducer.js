@@ -6,7 +6,7 @@ import
 from "../types/loader"
 
 const initState = {
-    isLoading: false
+    isLoading: true
 }
 
 export const loaderReducer = (state = initState, action) => {

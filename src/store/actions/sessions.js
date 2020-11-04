@@ -8,7 +8,6 @@ import
     }
 from "../types/sessions";
 import { showLoader, hideLoader } from '../../store/actions/loader'
-import sessionsjson from '../../db/session.json'
 
 export const getSessionByIdFilm = sessionByFilmId => (
     {

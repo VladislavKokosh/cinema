@@ -4,6 +4,8 @@ import Header from './components/Header';
 import Container from './components/Container';
 import 'antd/dist/antd.css';
 
+import './App.scss'
+
 function App() {
 return (
     <div className="App">

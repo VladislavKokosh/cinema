@@ -18,10 +18,7 @@ export const placesReducer = (state = initState, action) => {
             )
             const selectedSeats = checkCurrentSeat ?
                 state.choisePlaces.filter(place =>
-                    place.id_session !== checkCurrentSeat.id_session &&
-                    place.row !== checkCurrentSeat.row &&
-                    place.place !== checkCurrentSeat.place &&
-                    place.id_user !== checkCurrentSeat.id_user) :
+                    place.id !== checkCurrentSeat.id) :
                 [...state.choisePlaces, action.payload]
             return { ...state, choisePlaces: selectedSeats}
 
