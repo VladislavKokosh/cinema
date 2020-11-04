@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import { Modal, Form, Input, Checkbox, Button } from 'antd';
+import { Modal, Form, Input, Button } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { hideLoginModal } from '../../store/actions/modal';
@@ -19,7 +19,7 @@ const ModalLogin = () => {
     return(
         <Modal
             visible={visibleModal}
-            title='Log in'
+            title='Вход'
             onCancel={() => dispatch(hideLoginModal())}
             footer={null}
         >
@@ -30,34 +30,25 @@ const ModalLogin = () => {
             >
                 <Form.Item
                     name='username'
-                    rules={[{ required: true, message: 'Please input your Username!' }]}
+                    rules={[{ required: true, message: 'Пожалуйста введите логин!' }]}
                 >
                     <Input
                         prefix={<UserOutlined className="site-form-item-icon" />}
-                        placeholder='Username'
+                        placeholder='Логин'
                         onChange={e => setLogin(e.target.value)}
                     />
                 </Form.Item>
 
                 <Form.Item
                     name='password'
-                    rules={[{ required: true, message: 'Please input your Password!' }]}
+                    rules={[{ required: true, message: 'Пожалуйста введите пароль!' }]}
                 >
                     <Input
                         prefix={<LockOutlined className="site-form-item-icon" />}
                         type='password'
-                        placeholder='Password'
+                        placeholder='Пароль'
                         onChange={e => setPassword(e.target.value)}
                     />
-                </Form.Item>
-
-                <Form.Item>
-                    <Form.Item name='remember' valuePropName='checked' noStyle>
-                    <Checkbox>Remember me</Checkbox>
-                    </Form.Item>
-                    <a className="login-form-forgot" href="as">
-                        Forgot password
-                    </a>
                 </Form.Item>
 
                 <Form.Item>

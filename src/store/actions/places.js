@@ -44,7 +44,6 @@ export const getPlacesAsync = (sessionId) => {
 export const setChoisePlacesAsync = (choisePlaces) => {
     return async(dispatch) => {
         try {
-            console.log(choisePlaces)
             const { data } = await axios.post(`http://localhost:8080/selectedPlaces`, choisePlaces)
             console.log(data)
             dispatch(setChoisePlaces(data))

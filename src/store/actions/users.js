@@ -1,6 +1,15 @@
-import { GET_USERS, SET_USERS, GET_USERS_FAILURE, GET_USER_BY_ID } from "../types/users";
-import usersjson from '../../db/users.json'
+import 
+{ 
+    GET_USERS, 
+    SET_USERS, 
+    GET_USERS_FAILURE, 
+    SIGN_UP_USER, 
+    SIGN_UP_USER_FAILURE
+ } from "../types/users";
+import usersjson from '../../db/users.json';
+import { hideRegistrModal } from '../../store/actions/modal';
 import axios from "axios";
+import { message } from 'antd';
 
 export const getUsers = (users) => (
     {
@@ -29,6 +38,40 @@ export const getUsersFailure = (error) => (
         payload: error
     }
 )
+
+export const signUpUser = (user) => (
+    {
+        type: SIGN_UP_USER,
+        payload: user
+    }
+)
+
+export const signUpUserFailure = (error) => (
+    {
+        type: SIGN_UP_USER_FAILURE,
+        payload: error
+    }
+)
+
+export const signUpUserAsync = (user) => {
+    return async (dispatch) => {
+        try {
+            const { data } = await axios.post(`http://localhost:8080/users/signup`, user)
+            const { id } = data;
+
+            if (id) {
+                dispatch(hideRegistrModal());
+                message.success('Вы успешно зарегистрировались!')
+            } 
+            else {
+                message.error('Введите данные!');
+            };
+        }
+        catch (error) {
+            dispatch(signUpUserFailure(error))
+        }
+    }
+}
 
 
 export const getUsersAsync = () => {

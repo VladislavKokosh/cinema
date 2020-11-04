@@ -7,6 +7,7 @@ import {
     Modal
   } from 'antd';
 import { hideRegistrModal } from '../../store/actions/modal';
+import { signUpUserAsync } from '../../store/actions/users';
 
 const ModalRegistration = () => {
     const dispatch = useDispatch()
@@ -16,7 +17,11 @@ const ModalRegistration = () => {
     const [password, setPassword] = useState('')
 
     const rigistrClick = () => {
-        
+        const user = {
+            login: login,
+            password: password
+        }
+        dispatch(signUpUserAsync(user))
     }
 
     return(
