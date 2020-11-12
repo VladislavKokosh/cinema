@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { useDispatch } from 'react-redux';
+import React from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 
 import { PageHeader, Button } from 'antd';
 
@@ -9,16 +9,12 @@ import ModalRegistration from '../ModalRegistration';
 import { showLoginModal, showRegistrModal } from '../../store/actions/modal'
 
 import './index.scss';
+import { logoutUserAsync } from '../../store/actions/users';
 
 
 const Header = () => {
     const dispatch = useDispatch()
-    const [autorization, setAutorization] = useState(false);
-
-    useEffect(() => {
-        setAutorization(localStorage.getItem('autorization'))
-    },[])
-
+    const user = useSelector(state => state.users.user)
     const openModalLogin = () => {
         dispatch(showLoginModal())
     }
@@ -36,7 +32,7 @@ const Header = () => {
                 title='Кинотеатр "Звезда"'
                 subTitle='Приходи к нам, будем рады!'
                 extra={
-                    !autorization
+                    !user
                     ? <div>
                         <Button
                             key='1'
@@ -55,11 +51,10 @@ const Header = () => {
                     : <Button
                         key='3'
                         onClick={() => {
-                            setAutorization(false);
-                            localStorage.removeItem('autorization');
+                            dispatch(logoutUserAsync()) 
                         }}
                         >
-                        Log Out
+                        Выйти
                         </Button>
                 }
             />

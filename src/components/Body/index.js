@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { useSelector } from 'react-redux'
 import { Link } from "react-router-dom";
-
-import { Typography, Button, Modal } from 'antd';
+import { Typography, Button, message } from 'antd';
 
 import './index.scss'
 
@@ -9,14 +9,10 @@ const { Title } = Typography;
 
 const Body = () => {
 
-    const [autorization, setAutorization] = useState(false)
-    const [visibleModal, setVisibleModal] = useState(false);
+    const user = useSelector(state => state.users.user)
 
     const checkAutorization = () => {
-        let getAutorization = localStorage.getItem('autorization');
-        getAutorization ? setVisibleModal(false) : setVisibleModal(true)
-        setAutorization(getAutorization)
-        return console.log(getAutorization)
+        !user ?  message.error('Сначала авторизуйтесь!') : console.log();
     }
 
     return (
@@ -25,7 +21,7 @@ const Body = () => {
                 <Title className='body__order-title'>
                     Заказать билет онлайн.
                 </Title>
-                <Link to={`${autorization ? '/films':'/'}`}>
+                <Link to={`${user ? '/films':'/'}`}>
                     <Button
                         className='body__order-button'
                         size="large"
@@ -34,14 +30,6 @@ const Body = () => {
                         Заказать билет.
                     </Button>
                 </Link>
-                <Modal
-                    title="Ошибка авторизации"
-                    visible={visibleModal}
-                    onOk={() => setVisibleModal(false)}
-                    onCancel={() => setVisibleModal(false)}
-                >
-                    <p>Для того, чтобы заказать билет, вам нужно авторизоваться. Сделать это можно в верхнем меню.</p>
-                </Modal>
             </div>
         </div>
     )

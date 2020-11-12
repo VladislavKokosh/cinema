@@ -4,10 +4,14 @@ import
     SET_USERS, 
     GET_USERS_FAILURE, 
     SIGN_UP_USER, 
-    SIGN_UP_USER_FAILURE
+    SIGN_UP_USER_FAILURE,
+    LOGIN_USER,
+    LOGIN_USER_FAILURE,
+    LOGOUT_USER,
+    LOGOUT_USER_FAILURE
  } from "../types/users";
 import usersjson from '../../db/users.json';
-import { hideRegistrModal } from '../../store/actions/modal';
+import { hideLoginModal, hideRegistrModal } from '../../store/actions/modal';
 import axios from "axios";
 import { message } from 'antd';
 
@@ -69,6 +73,71 @@ export const signUpUserAsync = (user) => {
         }
         catch (error) {
             dispatch(signUpUserFailure(error))
+        }
+    }
+}
+
+export const loginUser = (user) => (
+    {
+        type: LOGIN_USER,
+        payload: user
+    }
+)
+
+export const loginUserFailure = (error) => (
+    {
+        type: LOGIN_USER_FAILURE,
+        payload: error
+    }
+)
+
+export const loginUserAsync = (user) => {
+    return async (dispatch) => {
+        try {
+            const { data } = await axios.post(`http://localhost:8080/users/login`, user)
+            const { id, token, login } = data;
+
+            if (token) {
+                localStorage.setItem('token', token);
+                dispatch(loginUser({id, login}))
+                dispatch(hideLoginModal());
+                message.success('Вы успешно авторизовались!')
+            }
+            else {
+                message.error('Токен не найден!')
+            }
+
+        }
+        catch (error) {
+            dispatch(loginUserFailure(error))
+            message.error('Некорректный ввод!')
+        }
+    }
+}
+
+export const logoutUser = () => (
+    {
+        type: LOGOUT_USER
+    }
+)
+
+export const logoutUserFailure = (error) => (
+    {
+        type: LOGOUT_USER_FAILURE,
+        payload: error
+    }
+)
+
+export const logoutUserAsync = () => {
+    return async (dispatch) => {
+        try {
+            localStorage.clear()
+            dispatch(logoutUser())
+            message.success('Вы вышли со своего аккаунта!')
+        }
+        catch (error) {
+            dispatch(logoutUserFailure(error))
+            message.error('Что-то пошло не так!')
         }
     }
 }

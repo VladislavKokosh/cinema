@@ -4,6 +4,7 @@ import { Modal, Form, Input, Button } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { hideLoginModal } from '../../store/actions/modal';
+import { loginUserAsync } from '../../store/actions/users';
 
 const ModalLogin = () => {
     const dispatch = useDispatch()
@@ -13,7 +14,11 @@ const ModalLogin = () => {
     const [password, setPassword] = useState('')
 
     const loginClick = () => {
-
+        const user = {
+            login: login,
+            password: password
+        }
+        dispatch(loginUserAsync(user))
     }
 
     return(
