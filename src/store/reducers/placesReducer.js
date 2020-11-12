@@ -23,10 +23,8 @@ export const placesReducer = (state = initState, action) => {
             return { ...state, choisePlaces: selectedSeats}
 
         case SET_PLACES:
-            const placeById = state.places?.find(place => +place.session === +action.payload.id);
-            console.log(placeById)
-            const places = [...placeById?.seats, ...action.payload.choisePlaces]
-            return { ...state, places: places}
+            const newPlaces = [ ...state.places, action.payload ]
+            return { ...state.places, places: newPlaces}
 
         case GET_PLACES_FAILURE:
             return { ...state, error: action.payload }

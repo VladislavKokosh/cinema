@@ -23,8 +23,9 @@ const Tickets = () => {
         setCostSum(sum)
     }, [choisePlaces])
 
-    const onClickBuy = (placeObj) => {
-        dispatch(setPlacesAsync(placeObj))
+    const onClickBuy = (places) => {
+        console.log(places);
+        dispatch(setPlacesAsync(...places))
     }
 
     return(
@@ -45,7 +46,7 @@ const Tickets = () => {
             </div>
             <div className="__purchase">
                 <Title level={5}>Стоимость билетов: {costSum} блр. руб.</Title>
-                <Button type="primary" onClick={() => onClickBuy({id: 1, choisePlaces:choisePlaces})}>Купить</Button>
+                <Button type="primary" onClick={() => onClickBuy(choisePlaces)}>Купить</Button>
             </div>
         </div>
     )

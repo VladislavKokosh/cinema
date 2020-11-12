@@ -8,7 +8,7 @@ const PrivateRoute = ({component: Component, ...rest }) => {
     const hall = useSelector(state => state.halls.hallById)
     const session = useSelector(state => state.sessions.sessionById)
     const places = useSelector(state => state.places.choisePlaces)
-    const filledData = film !== null && hall !== null && session !== null && places.length !== 0 ? true : false
+    const filledData = film !== null && hall !== null && session !== null && places?.length !== 0 ? true : false
     return (
         <Route
         {...rest}

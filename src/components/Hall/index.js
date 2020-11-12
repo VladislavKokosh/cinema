@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
 
-import { Typography, Button } from 'antd';
+import { Typography, Button, message } from 'antd';
 
 import Seats from '../Seats'
 import { getSessionByIdAsync } from '../../store/actions/sessions'
@@ -19,6 +19,7 @@ const Hall = (props) => {
 
     const dispatch = useDispatch()
     const sessionHall = useSelector(state => state.sessions.sessionHallId)
+    const sessionId = useSelector(state => state.sessionById)
     const hallById = useSelector(state => state.halls.hallById)
     const isLoading = useSelector(state => state.loading.isLoading)
     const currentSession = useSelector(state => state.places.places)
@@ -26,8 +27,7 @@ const Hall = (props) => {
     const [costSum, setCostSum] = useState(0)
 
     useEffect(() => {
-        dispatch(getPlacesAsync(sessionHall))
-        console.log(sessionHall);
+        dispatch(getPlacesAsync(props.match.params.id))
         dispatch(getHallIdByIdSessionAsync(props.match.params.id))
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
@@ -58,7 +58,7 @@ const Hall = (props) => {
                 <Seats
                     hall={hallById}
                     currentSession={currentSession}
-                    sessionId={sessionHall}
+                    sessionId={sessionId}
                 />
             </div>
             <div className="hall__about-places">
@@ -89,7 +89,7 @@ const Hall = (props) => {
             </div>
             <div className="hall__purchase">
                 <Title level={5}>Цена билетов: {costSum} руб.</Title>
-                <Link to={`/ticket`}>
+                <Link to={'/ticket'}>
                     <Button
                         type="primary"
                     >

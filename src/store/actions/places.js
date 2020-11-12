@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_PLACES, GET_PLACES_FAILURE, SET_CHOISE_PLACES, SET_PLACES } from '../types/places'
+import { GET_PLACES, GET_PLACES_FAILURE, SET_CHOISE_PLACES, SET_CHOISE_PLACES_FAILURE, SET_PLACES, SET_PLACES_FAILURE } from '../types/places'
 
 export const getPlaces = places => (
     {
@@ -15,10 +15,24 @@ export const setChoisePlaces = places => (
     }
 )
 
+export const setChoisePlacesFailure = error => (
+    {
+        type: SET_CHOISE_PLACES_FAILURE,
+        payload: error
+    }
+)
+
 export const setPlaces = placeObj => (
     {
         type: SET_PLACES,
         payload: placeObj
+    }
+)
+
+export const setPlacesFailure = error => (
+    {
+        type: SET_PLACES_FAILURE,
+        payload: error
     }
 )
 
@@ -49,21 +63,21 @@ export const setChoisePlacesAsync = (choisePlaces) => {
             dispatch(setChoisePlaces(data))
         }
         catch (error) {
-            dispatch(getPlacesFailure(error))
+            dispatch(setChoisePlacesFailure(error))
         }
     }
 }
 
 
-export const setPlacesAsync = (placeObj) => {
+export const setPlacesAsync = (places) => {
     return async(dispatch) => {
         try {
-            setTimeout(()=> {
-                dispatch(setPlaces(placeObj))
-            }, 10)
+           const { data } = await axios.post(`http://localhost:8080/places`, places)
+           console.log(data);
+           dispatch(setPlaces(data))
         }
         catch (error) {
-            dispatch(getPlacesFailure(error))
+            dispatch(setPlacesFailure(error))
         }
     }
 }

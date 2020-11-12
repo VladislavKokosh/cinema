@@ -1,8 +1,8 @@
 import React from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { setChoisePlacesAsync } from '../../store/actions/places'
-import { Typography } from 'antd';
+import { message, Typography } from 'antd';
 
 import './index.scss'
 
@@ -12,16 +12,21 @@ const { Text } = Typography;
 const Seat = ({seat, row, cost, occupied, choise, sessionId}) => {
 
     const dispatch = useDispatch()
+    const userId = useSelector(state => state.users.user.id)
     const onChoise = () => {
-        /* let user = localStorage.getItem('user'); */
-        let choiseSeat = {
-            id_session: sessionId,
-            row: row,
-            place: seat,
-            cost: cost,
-            id_user: '5f6c8a0f9871cd30acc0d700'
+        if(occupied){
+            message.warning('Это место уже выбрано!')
         }
-        dispatch(setChoisePlacesAsync(choiseSeat))
+        else {
+            let choiseSeat = {
+                id_session: sessionId,
+                row: row,
+                place: seat,
+                cost: cost,
+                id_user: userId
+            }
+            dispatch(setChoisePlacesAsync(choiseSeat))
+        }
     }
 
     return (
