@@ -8,8 +8,8 @@ const RowSeats = ({ seat, currentSession, sessionId }) => {
     const choisePlaces = useSelector(state => state.places.choisePlaces)
     const CheckPlaces = (row, place, session) => {
 
-        if(session?.seats) {
-            const occupied = session.seats.find(elem => +elem.place === +place && +elem.row === +row)
+        if(session) {
+            const occupied = session.find(elem => +elem.place === +place && +elem.row === +row)
             return !!occupied
         }
         return false

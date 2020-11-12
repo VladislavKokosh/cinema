@@ -21,12 +21,13 @@ const Hall = (props) => {
     const sessionHall = useSelector(state => state.sessions.sessionHallId)
     const hallById = useSelector(state => state.halls.hallById)
     const isLoading = useSelector(state => state.loading.isLoading)
-    const currentSession = useSelector(state => state.places.places[0])
+    const currentSession = useSelector(state => state.places.places)
     const choisePlaces = useSelector(state => state.places.choisePlaces)
     const [costSum, setCostSum] = useState(0)
 
     useEffect(() => {
         dispatch(getPlacesAsync(sessionHall))
+        console.log(sessionHall);
         dispatch(getHallIdByIdSessionAsync(props.match.params.id))
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
